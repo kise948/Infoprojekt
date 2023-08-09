@@ -1,25 +1,21 @@
 function main(){
     import("d3")
 
-    console.log("Starting")
+
     //getting example data
     let labwork = require("../json files/labwork.json")
     let courses = require("../json files/courses.json")
     let degrees = require("../json files/degrees.json")
     let repCardEntry = require("../json files/REPORT_CARD_ENTRY.json")
     let repCardEntryType = require("../json files/REPORT_CARD_ENTRY_TYPE.json")
-
     //let milestones = new Map()
     let milestones = []
 
     // Through the API get a json array containing all entries for a given year and labwork
-    for (let entry in repCardEntry){ //
+    for (let entry of repCardEntry){ //
         if(entry.LABWORK === "ef693956-6b7a-4731-8d89-f86aff0f14a8"){ //looking for ALL PP - AI associated report card entries
             let index = entry.ASSIGNMENT_INDEX
-            while(typeof milestones[index] === 'undefined'){
-                milestones.push({label: null, participants: null})
-            }
-            if(milestones[index].label === null){
+            if(typeof milestones[index] === 'undefined'){
                 milestones[index] = {label: entry.LABEL, participants: 1}
             } else {milestones[index].participants++}
         }
