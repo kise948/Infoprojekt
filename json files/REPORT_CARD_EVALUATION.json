@@ -1,0 +1,1002 @@
+[
+  {
+    "STUDENT": "3499e3fa-e9df-43e2-8d18-eb86564d6826",
+    "LABWORK": "16cb4711-f636-454f-8c84-edae0827ca93",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.732",
+    "INVALIDATED": "NULL",
+    "ID": "f8229dea-4377-4582-a40b-071af5336eba"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "effe9a37-2204-4a54-853c-afb16afc8c92",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.8",
+    "INVALIDATED": "NULL",
+    "ID": "f58913bb-c449-4d11-b0ef-b1b8587f7549"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "7932935f-5bd9-4eba-afdc-cf7b1fed027c",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.802",
+    "INVALIDATED": "NULL",
+    "ID": "1a3833a8-ce0d-4605-9142-3a36971b5617"
+  },
+  {
+    "STUDENT": "96d5cf94-a697-4dc0-aa56-3481485c98ad",
+    "LABWORK": "c1c3efac-8e97-4627-9424-876400b8c592",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.832",
+    "INVALIDATED": "NULL",
+    "ID": "925a468f-07fa-4a4f-b469-35143dccc8d6"
+  },
+  {
+    "STUDENT": "093a6fe1-95be-4229-8c97-dfffb8111a4b",
+    "LABWORK": "c8df4c28-dab6-4c5c-a37c-aa5cd2e7e012",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.839",
+    "INVALIDATED": "NULL",
+    "ID": "2430b1b8-e2b9-4b70-8f39-62409d32e429"
+  },
+  {
+    "STUDENT": "b1df510e-86c3-4553-be6b-d0bb8c877a43",
+    "LABWORK": "855630cb-59a3-4c94-b3ab-d7c0f92f6ba2",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.807",
+    "INVALIDATED": "NULL",
+    "ID": "d7798271-6f24-4747-8d86-d002a5107a2e"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "e7f296e0-ab3d-42e6-a1d4-672ce588e034",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": -4,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.843",
+    "INVALIDATED": "NULL",
+    "ID": "558c78c9-ffd7-4dcc-8ae5-ead81eaa8d53"
+  },
+  {
+    "STUDENT": "b1df510e-86c3-4553-be6b-d0bb8c877a43",
+    "LABWORK": "a1acdc4e-a9f7-4a45-a34e-47b96b086e57",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.839",
+    "INVALIDATED": "NULL",
+    "ID": "442b2468-4d8c-49c3-9d92-da8b10e0c856"
+  },
+  {
+    "STUDENT": "ac70fdc3-0617-4929-9605-aa6f211cbb2d",
+    "LABWORK": "7676441c-9cd2-445f-8f23-673221cd0173",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.795",
+    "INVALIDATED": "NULL",
+    "ID": "2f7a91e5-fd63-46c2-a5ff-c8209169fa03"
+  },
+  {
+    "STUDENT": "3499e3fa-e9df-43e2-8d18-eb86564d6826",
+    "LABWORK": "16cb4711-f636-454f-8c84-edae0827ca93",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 3,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.733",
+    "INVALIDATED": "NULL",
+    "ID": "b72647e5-1836-45dd-9901-89232f89a4e9"
+  },
+  {
+    "STUDENT": "792c20aa-bbf2-4c6f-9199-d9b665318862",
+    "LABWORK": "94cdda8b-5ed7-4b2a-ad9e-0e51567f6f96",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.819",
+    "INVALIDATED": "NULL",
+    "ID": "8202a8cb-cccb-4752-8535-4745c36d257b"
+  },
+  {
+    "STUDENT": "1df74310-0331-4d75-a841-7f00df7a11a7",
+    "LABWORK": "d6572f80-5d74-4219-b048-2d678c014e98",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.86",
+    "INVALIDATED": "NULL",
+    "ID": "56943742-13cc-42d2-885e-55cac4a1ba27"
+  },
+  {
+    "STUDENT": "213a2f80-0c38-42a5-a046-26660263b88a",
+    "LABWORK": "fdc9a48d-b1ab-44fe-9bef-46bbefbf43d7",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.815",
+    "INVALIDATED": "NULL",
+    "ID": "ceec66e0-4d74-4f0b-8d02-d289d4b3410f"
+  },
+  {
+    "STUDENT": "3855a797-8b36-45f6-aaf7-15376d417aae",
+    "LABWORK": "a41c3127-c47f-4a2c-803b-84ca61135825",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.821",
+    "INVALIDATED": "NULL",
+    "ID": "dd61b839-b46e-44e8-a12d-df3b2d9825eb"
+  },
+  {
+    "STUDENT": "3f5a0d1e-12d3-4664-930c-67b5f9189746",
+    "LABWORK": "4629d13f-96fd-4585-bdb3-37094a596c80",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.811",
+    "INVALIDATED": "NULL",
+    "ID": "6abb17fc-bb41-4d13-82e2-8faaaef88f44"
+  },
+  {
+    "STUDENT": "0f574d58-a954-490c-af86-f7db05fdec01",
+    "LABWORK": "3e5e6447-159c-46b2-9ee4-eeb5af1b4218",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.796",
+    "INVALIDATED": "NULL",
+    "ID": "0d3ad521-e4fd-4c8e-82f1-9b6e71777404"
+  },
+  {
+    "STUDENT": "c02851c7-d63d-4c1a-aef4-742bfbe2ac10",
+    "LABWORK": "2708918c-ce34-456a-9cc9-412966b15df8",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.889",
+    "INVALIDATED": "NULL",
+    "ID": "d5979743-dd0d-4307-b166-dc1641e88cb5"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "42d630cf-6026-46a1-92e0-c428b0be228f",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.817",
+    "INVALIDATED": "NULL",
+    "ID": "48402181-f5e1-4f91-84cf-012360da422c"
+  },
+  {
+    "STUDENT": "e230cca4-62ea-4ecb-b349-262643247f35",
+    "LABWORK": "e7f296e0-ab3d-42e6-a1d4-672ce588e034",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.843",
+    "INVALIDATED": "NULL",
+    "ID": "c599bf78-4966-4c83-8c6b-e67568bad1be"
+  },
+  {
+    "STUDENT": "c62393a6-5f3d-4fb2-b3c7-6b9784a2b828",
+    "LABWORK": "c8df4c28-dab6-4c5c-a37c-aa5cd2e7e012",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.839",
+    "INVALIDATED": "NULL",
+    "ID": "d8ddf867-2a9f-4697-9cd7-32e637b04186"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "7932935f-5bd9-4eba-afdc-cf7b1fed027c",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.802",
+    "INVALIDATED": "NULL",
+    "ID": "08c87e68-a19d-48e9-8817-693d570f2119"
+  },
+  {
+    "STUDENT": "8d1d6ce9-b28f-4ba1-96e4-f0bb0ebff221",
+    "LABWORK": "ca359415-06d4-4c26-9b10-b656aeba5c1c",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.899",
+    "INVALIDATED": "NULL",
+    "ID": "26449820-7e95-4403-a1cc-7d229b08e290"
+  },
+  {
+    "STUDENT": "b3cf16ab-ad51-4e93-a686-9253942b21f9",
+    "LABWORK": "b566e869-5668-40c4-8314-95696cc02fb6",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": -1,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.905",
+    "INVALIDATED": "NULL",
+    "ID": "1dff58fb-05f6-4e31-94f0-28d9d790c11c"
+  },
+  {
+    "STUDENT": "054096e6-9c75-442b-83e9-c9cbb6a593c6",
+    "LABWORK": "ddabde89-1a8d-479f-a128-21b6027447fc",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.922",
+    "INVALIDATED": "NULL",
+    "ID": "59bc930c-7d8e-4cdd-b2b4-c1027c873f27"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "fdc9a48d-b1ab-44fe-9bef-46bbefbf43d7",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.815",
+    "INVALIDATED": "NULL",
+    "ID": "a4fb45b8-2930-471e-86b7-b7b95974685f"
+  },
+  {
+    "STUDENT": "3a46f757-462a-4f75-a074-b3a322b72210",
+    "LABWORK": "777c10f1-1783-48be-ae72-2236bb2dc976",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.133",
+    "INVALIDATED": "NULL",
+    "ID": "96bb6956-ee44-459c-972d-c0d78b0787c4"
+  },
+  {
+    "STUDENT": "4dde435a-8ea5-43ec-bc74-388b3962a342",
+    "LABWORK": "3fdbce07-a77a-4f53-96f9-104bf0c8d05c",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.156",
+    "INVALIDATED": "NULL",
+    "ID": "1e37a8e5-90a0-4d9b-8205-249145f37cf1"
+  },
+  {
+    "STUDENT": "b3cf16ab-ad51-4e93-a686-9253942b21f9",
+    "LABWORK": "96f42244-a797-4dfa-8566-1f167275bb86",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.895",
+    "INVALIDATED": "NULL",
+    "ID": "16016e46-75d7-4615-844c-73a477a554ea"
+  },
+  {
+    "STUDENT": "7bccf53e-8e8f-4a0a-9069-9cb831eeadac",
+    "LABWORK": "191f248d-3329-4661-a4e9-2b8f19699937",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.793",
+    "INVALIDATED": "NULL",
+    "ID": "f528d138-af4c-4511-9b94-48e2599b7abd"
+  },
+  {
+    "STUDENT": "732f7bf8-0808-45b6-8d19-2ddec0634e85",
+    "LABWORK": "a66ed4a1-8239-4901-91d5-e57f8a76e6d4",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.993",
+    "INVALIDATED": "NULL",
+    "ID": "9e2b08d4-9204-463e-9ab0-ab8e4b6db864"
+  },
+  {
+    "STUDENT": "b78e3808-f3d7-418f-b919-350ac7892f61",
+    "LABWORK": "f04c43f9-71b7-4c89-a8f7-d292d9c96408",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.388",
+    "INVALIDATED": "NULL",
+    "ID": "16b4b184-a90c-4836-8627-7297d1d6f738"
+  },
+  {
+    "STUDENT": "fc38c35b-77ad-43d6-a465-1b47f87c5529",
+    "LABWORK": "d80b4b16-68ba-4b50-bdbb-53b956cb6c43",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.305",
+    "INVALIDATED": "NULL",
+    "ID": "c3ff4e14-899c-4464-973d-2454d9619d5f"
+  },
+  {
+    "STUDENT": "573e37f5-4042-4ac8-8fbd-5f056c7c47aa",
+    "LABWORK": "c1c3efac-8e97-4627-9424-876400b8c592",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.832",
+    "INVALIDATED": "NULL",
+    "ID": "ec475be8-da1e-4e5f-a42b-3111ef8112ae"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "fd8c3240-e704-4bbe-83d7-da9d421937a8",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.257",
+    "INVALIDATED": "NULL",
+    "ID": "8ec2f89f-edeb-4110-a0aa-bd7ff16b35d5"
+  },
+  {
+    "STUDENT": "6b27e418-144e-45eb-a14f-6552aeb2f40e",
+    "LABWORK": "aefdbe21-fe3d-48df-a07d-7ae64ed4b335",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.302",
+    "INVALIDATED": "NULL",
+    "ID": "9d738aeb-6440-4d2e-a865-4dec94c697fd"
+  },
+  {
+    "STUDENT": "190c721d-65ef-41a7-bb06-c96c0517c9c2",
+    "LABWORK": "7676441c-9cd2-445f-8f23-673221cd0173",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.795",
+    "INVALIDATED": "NULL",
+    "ID": "bc2c53b0-b7e6-4229-be57-5b9f321f07f2"
+  },
+  {
+    "STUDENT": "2c88f5ee-ef59-4643-b90d-c94db3a57530",
+    "LABWORK": "8287bbe7-fa32-4c52-9ef2-da1d4a148358",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.129",
+    "INVALIDATED": "NULL",
+    "ID": "91e65fe8-fdb2-40c4-8357-30b7362b8c34"
+  },
+  {
+    "STUDENT": "3f5a0d1e-12d3-4664-930c-67b5f9189746",
+    "LABWORK": "4629d13f-96fd-4585-bdb3-37094a596c80",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.811",
+    "INVALIDATED": "NULL",
+    "ID": "0db8e5d0-7f3f-442e-be55-7a5f82250965"
+  },
+  {
+    "STUDENT": "190c721d-65ef-41a7-bb06-c96c0517c9c2",
+    "LABWORK": "82fcef73-c6ca-47aa-a529-ed6e4e9389c4",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.395",
+    "INVALIDATED": "NULL",
+    "ID": "eb4f17c7-80cd-4db8-b333-a81bc9594bef"
+  },
+  {
+    "STUDENT": "8195163b-fc9b-492a-aec3-dd9bf138450c",
+    "LABWORK": "1e07b830-9c5b-426a-b23f-979460633c88",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.807",
+    "INVALIDATED": "NULL",
+    "ID": "475947e8-ce4c-4caf-8234-e918b180e5d6"
+  },
+  {
+    "STUDENT": "f4e07be5-7644-40fb-a6c7-99417134f0d3",
+    "LABWORK": "ab372771-128e-4901-8fab-51457950e0b6",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.183",
+    "INVALIDATED": "NULL",
+    "ID": "2c5d69ed-b294-4d4f-bd40-ac77ac65ea61"
+  },
+  {
+    "STUDENT": "95f354a1-1621-477f-b520-248550ee9090",
+    "LABWORK": "a47ee485-9307-4f85-a2df-37a7fb9725cf",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 3,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.834",
+    "INVALIDATED": "NULL",
+    "ID": "255bf52d-0ad7-4fc7-bf2f-583e9a5b4302"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "effe9a37-2204-4a54-853c-afb16afc8c92",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.8",
+    "INVALIDATED": "NULL",
+    "ID": "db04e6bb-737e-4636-afa3-0a70c6f396f6"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "7932935f-5bd9-4eba-afdc-cf7b1fed027c",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.802",
+    "INVALIDATED": "NULL",
+    "ID": "19f5c3a3-3c4c-418d-84d8-f8ac6cfb567b"
+  },
+  {
+    "STUDENT": "103e2401-9c1c-46bf-9ca3-eac95c355502",
+    "LABWORK": "7aa0c375-6906-4a44-b7cc-bc906789c496",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.602",
+    "INVALIDATED": "NULL",
+    "ID": "a844fb98-9e1c-415c-b289-4bd8ff9f9a00"
+  },
+  {
+    "STUDENT": "b3f113a3-f732-4cc7-a6c6-0b733f076cdf",
+    "LABWORK": "fff37184-3bf4-4ac7-b06a-1f08c69dba8f",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.424",
+    "INVALIDATED": "NULL",
+    "ID": "5146eff0-e7af-4ae2-849d-7931f01a0791"
+  },
+  {
+    "STUDENT": "3b2d66f4-85b6-4c83-b5c4-ace9db14a3bf",
+    "LABWORK": "db0be8b7-f335-4f30-aa5b-657be85d91ad",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.098",
+    "INVALIDATED": "NULL",
+    "ID": "c6b54724-234d-4df7-8cf1-59d272bea66d"
+  },
+  {
+    "STUDENT": "0a4ca464-0db4-4167-acda-6b0456adf173",
+    "LABWORK": "f48f8fd3-4ca8-4ce6-a609-2b5c844bd5de",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.969",
+    "INVALIDATED": "NULL",
+    "ID": "df8f1b92-1147-4d92-a713-14eab04bd289"
+  },
+  {
+    "STUDENT": "5675c467-3715-4153-8645-328f3578d1c8",
+    "LABWORK": "1962a273-249f-444d-a536-79538930d2bb",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.258",
+    "INVALIDATED": "NULL",
+    "ID": "823d7fab-5e29-4cda-9d0c-8c7365679a87"
+  },
+  {
+    "STUDENT": "76b236a7-0df9-4bdf-bd07-32db87f502d9",
+    "LABWORK": "7bf3e9b1-2174-431a-a0e5-d36e1225fcd9",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.601",
+    "INVALIDATED": "NULL",
+    "ID": "1fd553dc-16db-4bd1-8c28-24769b66ffb5"
+  },
+  {
+    "STUDENT": "9f16a3f9-92a1-494e-b3a0-a14e6e95619a",
+    "LABWORK": "3fdbce07-a77a-4f53-96f9-104bf0c8d05c",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.156",
+    "INVALIDATED": "NULL",
+    "ID": "415fda5b-6be7-41d4-90bd-562e56204c1f"
+  },
+  {
+    "STUDENT": "608ca1fc-225d-40ee-ac8a-6fcfc85e75e8",
+    "LABWORK": "2c0128b3-aabb-4770-87aa-844d2e26b8f2",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.046",
+    "INVALIDATED": "NULL",
+    "ID": "cec9bf2b-d009-4e5c-87f4-d36612489f5d"
+  },
+  {
+    "STUDENT": "3da95db2-e7ea-4327-9fdc-62b308de5c23",
+    "LABWORK": "901a3085-1e1a-4802-9853-ba62bf6b62a4",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.194",
+    "INVALIDATED": "NULL",
+    "ID": "94de9a3a-bdf2-44fa-93d1-5fe76efe6ba1"
+  },
+  {
+    "STUDENT": "52b01bb9-ba2b-4fed-ad7d-61322748906f",
+    "LABWORK": "d6572f80-5d74-4219-b048-2d678c014e98",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.86",
+    "INVALIDATED": "NULL",
+    "ID": "fc64c31f-6d8b-4a56-b36a-f3804bbe167d"
+  },
+  {
+    "STUDENT": "a16fcd10-1fdb-4f8e-947f-9e81706c2e36",
+    "LABWORK": "94cdda8b-5ed7-4b2a-ad9e-0e51567f6f96",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.819",
+    "INVALIDATED": "NULL",
+    "ID": "8d048848-9362-4c03-9c7d-237467e8c17b"
+  },
+  {
+    "STUDENT": "f56f799d-93b6-49c9-a81e-20b6ef08b7e9",
+    "LABWORK": "be0758b5-0351-4a97-8490-36c152b96f81",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.043",
+    "INVALIDATED": "NULL",
+    "ID": "2962cf92-7d3c-4ae9-adeb-c6f1cbdd8ba1"
+  },
+  {
+    "STUDENT": "ead37181-897e-4160-ae32-ffdceec20c80",
+    "LABWORK": "20e6a7cc-46d1-4d8d-9069-9b8191919999",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.303",
+    "INVALIDATED": "NULL",
+    "ID": "2269fa69-586c-4368-bf5a-0fe44e5d5d4b"
+  },
+  {
+    "STUDENT": "3499e3fa-e9df-43e2-8d18-eb86564d6826",
+    "LABWORK": "16cb4711-f636-454f-8c84-edae0827ca93",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.733",
+    "INVALIDATED": "NULL",
+    "ID": "ee1a95ec-03e7-48c7-81b4-0fc063f9c79b"
+  },
+  {
+    "STUDENT": "5675c467-3715-4153-8645-328f3578d1c8",
+    "LABWORK": "a1acdc4e-a9f7-4a45-a34e-47b96b086e57",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.839",
+    "INVALIDATED": "NULL",
+    "ID": "7df952ed-2157-46f4-9db1-7529169a8024"
+  },
+  {
+    "STUDENT": "87554fef-e118-44c5-a990-dd95fd0353d2",
+    "LABWORK": "a41c3127-c47f-4a2c-803b-84ca61135825",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.821",
+    "INVALIDATED": "NULL",
+    "ID": "bfb8472a-ef29-4007-aaa6-ebc83318ca3c"
+  },
+  {
+    "STUDENT": "190c721d-65ef-41a7-bb06-c96c0517c9c2",
+    "LABWORK": "855630cb-59a3-4c94-b3ab-d7c0f92f6ba2",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.807",
+    "INVALIDATED": "NULL",
+    "ID": "f9cce85b-b730-4a04-9654-2557704db355"
+  },
+  {
+    "STUDENT": "cb6465fc-4ec7-4a0b-a0ff-339a60d2336c",
+    "LABWORK": "98bbd716-31c9-4bf0-a8a1-05ae74b739ad",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.011",
+    "INVALIDATED": "NULL",
+    "ID": "1b6846af-1673-4f2a-9f1c-0d4fa0f967f6"
+  },
+  {
+    "STUDENT": "50527c7e-e711-4388-bfcd-5647eeacbd92",
+    "LABWORK": "0e3806af-c827-4d08-abbf-f80793d8fa33",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.564",
+    "INVALIDATED": "NULL",
+    "ID": "3e353aab-52c1-4de2-96ad-20b5541eb98a"
+  },
+  {
+    "STUDENT": "957a1e97-afd2-4b3d-a91d-c8d202133b6d",
+    "LABWORK": "c5336717-dae9-4279-9874-6ae62596dc06",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.058",
+    "INVALIDATED": "NULL",
+    "ID": "e7f6c912-fca1-4bbe-9011-2473eff68e53"
+  },
+  {
+    "STUDENT": "9de1cebb-d69f-410f-886d-3cdd66947694",
+    "LABWORK": "c8df4c28-dab6-4c5c-a37c-aa5cd2e7e012",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.839",
+    "INVALIDATED": "NULL",
+    "ID": "cc10abbd-93bb-43c0-9f4e-602c8838133d"
+  },
+  {
+    "STUDENT": "32273315-77da-4b68-9b37-6c8dc1c18bd6",
+    "LABWORK": "66921c9b-df70-48dd-97da-6649deba78d5",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.78",
+    "INVALIDATED": "NULL",
+    "ID": "9fddb830-ef68-43c0-9879-671fa50f4331"
+  },
+  {
+    "STUDENT": "937b85b1-30ae-4616-9fdb-4d42e3aeda95",
+    "LABWORK": "2708918c-ce34-456a-9cc9-412966b15df8",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.889",
+    "INVALIDATED": "NULL",
+    "ID": "7a560cb6-48e5-40fb-8f49-ba4fca1ee1f0"
+  },
+  {
+    "STUDENT": "bcaee434-d983-4d74-af60-7769ebd7464b",
+    "LABWORK": "b3735131-b23b-4c65-9788-a113aa651ea2",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.029",
+    "INVALIDATED": "NULL",
+    "ID": "f9c19956-0426-4eec-96ba-4b76adbea006"
+  },
+  {
+    "STUDENT": "28bda6b7-f2fa-47e7-b570-f083902c0652",
+    "LABWORK": "e2823c3c-eebe-4161-95e8-1f19019af11e",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.564",
+    "INVALIDATED": "NULL",
+    "ID": "7ec4e31c-8e27-4306-9018-5a6cc66ffff3"
+  },
+  {
+    "STUDENT": "ca12f528-38ef-4e11-b0b6-210074eebeab",
+    "LABWORK": "b566e869-5668-40c4-8314-95696cc02fb6",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.905",
+    "INVALIDATED": "NULL",
+    "ID": "cb4cea7b-b32d-48d1-9749-a5f71b63fc70"
+  },
+  {
+    "STUDENT": "bb25b162-5e18-4407-97ed-150aa23c75fe",
+    "LABWORK": "09e4ae61-4b5b-4348-ae6e-7c884505d5a6",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.526",
+    "INVALIDATED": "NULL",
+    "ID": "8ec505f5-93ae-4a59-9b28-6659e2b916e6"
+  },
+  {
+    "STUDENT": "18d2cf44-4702-4aec-9955-42e1002b0972",
+    "LABWORK": "b5664539-84d0-4fcf-903c-70a991e13411",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:42.138",
+    "INVALIDATED": "NULL",
+    "ID": "2d8fce6f-0c75-4926-bf79-addc21ca7dc8"
+  },
+  {
+    "STUDENT": "c5526909-8e6b-4a25-8730-5727f7d82c34",
+    "LABWORK": "54ba9902-1545-49bb-a4ba-2154144ed8e1",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.785",
+    "INVALIDATED": "NULL",
+    "ID": "3ccbce57-50f9-4b47-8375-a5642d82f7bf"
+  },
+  {
+    "STUDENT": "02aa61c3-69ea-44df-8738-1eecc6959967",
+    "LABWORK": "3888c642-400d-46bf-8266-7887bb9b50cf",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.873",
+    "INVALIDATED": "NULL",
+    "ID": "6681c3b2-01f6-4417-9075-994001e60f1a"
+  },
+  {
+    "STUDENT": "d473e5d8-68b9-459d-a617-db1f4a87cf57",
+    "LABWORK": "fa31f07d-ae02-402c-b669-794a3a0d671b",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.877",
+    "INVALIDATED": "NULL",
+    "ID": "98379c0a-f3ae-48aa-8123-44923fb75514"
+  },
+  {
+    "STUDENT": "c02851c7-d63d-4c1a-aef4-742bfbe2ac10",
+    "LABWORK": "96f42244-a797-4dfa-8566-1f167275bb86",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.895",
+    "INVALIDATED": "NULL",
+    "ID": "8b5f6af7-0ef1-4b4f-9202-bb28eeb032be"
+  },
+  {
+    "STUDENT": "22cc173f-3c3f-4e06-8404-95f82eef16e6",
+    "LABWORK": "a3d5024f-7dac-46d8-a510-a51dd53d752c",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.759",
+    "INVALIDATED": "NULL",
+    "ID": "a0ce4c8c-fe30-447e-82e0-c24ac0871d72"
+  },
+  {
+    "STUDENT": "8cec1267-858d-45bc-a093-8352901385e0",
+    "LABWORK": "777c10f1-1783-48be-ae72-2236bb2dc976",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 2,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.133",
+    "INVALIDATED": "NULL",
+    "ID": "08e08561-d283-49bf-bdec-0f8d1dcc0f9b"
+  },
+  {
+    "STUDENT": "dc4a4080-e282-42a7-a2cd-3431d86a1d9b",
+    "LABWORK": "f9ef02ba-60e8-4b44-a73f-3f12d4db8743",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:43.935",
+    "INVALIDATED": "NULL",
+    "ID": "10455e9e-70c0-4251-9307-0f2c79911e7d"
+  },
+  {
+    "STUDENT": "0538b97c-066d-4806-a6e6-413f4bd11651",
+    "LABWORK": "3e5e6447-159c-46b2-9ee4-eeb5af1b4218",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.796",
+    "INVALIDATED": "NULL",
+    "ID": "52450f80-b8d8-42f4-b4f4-5d502493a540"
+  },
+  {
+    "STUDENT": "213a2f80-0c38-42a5-a046-26660263b88a",
+    "LABWORK": "ddabde89-1a8d-479f-a128-21b6027447fc",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.922",
+    "INVALIDATED": "NULL",
+    "ID": "61b1bfbd-f72f-459b-8a8d-67d5db824965"
+  },
+  {
+    "STUDENT": "1c28d835-5286-47a6-8691-784454a72ba3",
+    "LABWORK": "fa31f07d-ae02-402c-b669-794a3a0d671b",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.877",
+    "INVALIDATED": "NULL",
+    "ID": "47e1d873-a8f5-4bd5-bff3-9a36b54c00f5"
+  },
+  {
+    "STUDENT": "ebfee5fe-7dd8-48dd-b59d-8b965fb7d9fa",
+    "LABWORK": "8f9e69a1-4627-48fe-a807-fc8ce66485b4",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:41.716",
+    "INVALIDATED": "NULL",
+    "ID": "20f0217a-eb15-46ba-b0a0-9be6ad878abc"
+  },
+  {
+    "STUDENT": "38a84ca1-6b4b-492e-a0e3-14cc05dc857f",
+    "LABWORK": "0cf9b41d-d915-424b-868e-46eaa9ba7512",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:42.632",
+    "INVALIDATED": "NULL",
+    "ID": "0dcb2fff-f437-4d1c-bd28-d9431320b08d"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "effe9a37-2204-4a54-853c-afb16afc8c92",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.8",
+    "INVALIDATED": "NULL",
+    "ID": "11069e47-6e02-4fa4-b65a-0607657a5302"
+  },
+  {
+    "STUDENT": "4568f18c-1040-47f9-9c98-b0b7ff42afd8",
+    "LABWORK": "1e07b830-9c5b-426a-b23f-979460633c88",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.807",
+    "INVALIDATED": "NULL",
+    "ID": "0e0e9833-38e7-4c18-b82c-fc6e816e0c52"
+  },
+  {
+    "STUDENT": "8d6f1d59-c161-4879-8c90-2e7196f392a6",
+    "LABWORK": "855630cb-59a3-4c94-b3ab-d7c0f92f6ba2",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.807",
+    "INVALIDATED": "NULL",
+    "ID": "be57a8f1-716a-48ff-998a-c703f1bbf93f"
+  },
+  {
+    "STUDENT": "5a8c3450-0e52-4d47-a08f-94545993c45b",
+    "LABWORK": "1b963766-27f5-4858-8f02-4ea8e942dd5e",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:42.56",
+    "INVALIDATED": "NULL",
+    "ID": "608eb948-7038-4a7d-b9a0-f2a1ad76df8f"
+  },
+  {
+    "STUDENT": "47dcdb39-a370-41b4-a88b-53afaf2c84e3",
+    "LABWORK": "dac8944d-a4b4-40be-90dc-9ecf50c052d4",
+    "LABEL": "Anwesenheitspflichtig",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:43.204",
+    "INVALIDATED": "NULL",
+    "ID": "3b8c5126-4e97-46df-a95e-520fffd5698b"
+  },
+  {
+    "STUDENT": "5ac3328d-a475-4a05-9e3b-983648a20963",
+    "LABWORK": "7a05e828-252c-4e5b-83b6-1faa4848dacf",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:47.549",
+    "INVALIDATED": "NULL",
+    "ID": "05fbd403-21ec-4fda-b90a-5fe5e6eb5ab5"
+  },
+  {
+    "STUDENT": "a08cc547-15b4-4ed3-a799-107f45d590d5",
+    "LABWORK": "ff95b3f9-c691-4375-abee-faee3dc967e0",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:45.982",
+    "INVALIDATED": "NULL",
+    "ID": "0bc0d06b-e491-4a82-aff6-b369506cdeb9"
+  },
+  {
+    "STUDENT": "2e8a2f95-2783-4b9e-bd4b-de569c6e7045",
+    "LABWORK": "fd8c3240-e704-4bbe-83d7-da9d421937a8",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.257",
+    "INVALIDATED": "NULL",
+    "ID": "e642b596-741d-4f7b-988b-11cea3d2cdf8"
+  },
+  {
+    "STUDENT": "bb858655-c0f9-44d7-b13a-a5eaa129a457",
+    "LABWORK": "66921c9b-df70-48dd-97da-6649deba78d5",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.78",
+    "INVALIDATED": "NULL",
+    "ID": "eb40cddf-2fc8-4ca4-9f47-fdfcd68f4855"
+  },
+  {
+    "STUDENT": "693ad93e-7e16-4186-b66c-7af8ab145328",
+    "LABWORK": "7aa0c375-6906-4a44-b7cc-bc906789c496",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.602",
+    "INVALIDATED": "NULL",
+    "ID": "fbee691d-35c7-4633-bf5a-113d13b741f1"
+  },
+  {
+    "STUDENT": "99a43736-5546-417b-adb1-fe8d4b7233c2",
+    "LABWORK": "afc3e2e3-37f9-4360-bc4a-f4decbf0771b",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:47.336",
+    "INVALIDATED": "NULL",
+    "ID": "94936163-4c07-4f03-83db-b258c31ee1ce"
+  },
+  {
+    "STUDENT": "e325de74-cc71-4717-aa1e-a878369243dd",
+    "LABWORK": "fff37184-3bf4-4ac7-b06a-1f08c69dba8f",
+    "LABEL": "Bonus",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.424",
+    "INVALIDATED": "NULL",
+    "ID": "f822618b-39a0-4007-b88d-9034c660e0e4"
+  },
+  {
+    "STUDENT": "5ac3328d-a475-4a05-9e3b-983648a20963",
+    "LABWORK": "a47ee485-9307-4f85-a2df-37a7fb9725cf",
+    "LABEL": "Testat",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.834",
+    "INVALIDATED": "NULL",
+    "ID": "01632fc3-5693-4968-add2-40a06599129b"
+  },
+  {
+    "STUDENT": "ead37181-897e-4160-ae32-ffdceec20c80",
+    "LABWORK": "66921c9b-df70-48dd-97da-6649deba78d5",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:40.78",
+    "INVALIDATED": "NULL",
+    "ID": "bb9e07c3-f140-4b21-8af3-0d55cefef91c"
+  },
+  {
+    "STUDENT": "e78b93c0-9580-43d8-948b-7d77856e9476",
+    "LABWORK": "aefdbe21-fe3d-48df-a07d-7ae64ed4b335",
+    "LABEL": "Testat",
+    "BOOL": "False",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:39.302",
+    "INVALIDATED": "NULL",
+    "ID": "9be5cf5a-ac44-4fcf-bd5c-f251f91a0472"
+  },
+  {
+    "STUDENT": "213a2f80-0c38-42a5-a046-26660263b88a",
+    "LABWORK": "fdc9a48d-b1ab-44fe-9bef-46bbefbf43d7",
+    "LABEL": "Zusatzleistung",
+    "BOOL": "True",
+    "INT": 0,
+    "LAST_MODIFIED": "2020-03-31 13:59:38.815",
+    "INVALIDATED": "NULL",
+    "ID": "715b1a0c-c9be-4eb9-8aa3-ac023686fe8e"
+  }
+]
