@@ -11,3 +11,6 @@
 /output.json/
 /package-lock.json/
 /dataSources.local.xml
+app/application.js
+package-lock.json
+app/application.js
