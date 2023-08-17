@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3 Data Visualizations</title>
+  <!-- Include D3.js library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      background-color: white; /* Default background color */
+      color: black; /* Default text color */
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: black;
+      color: dimgray;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Data Visualizations with D3</h1>
+</header>
+<nav>
+  <ul>
+    <li><a href="#visualization1">Visualization 1</a></li>
+    <li><a href="#visualization2">Visualization 2</a></li>
+    <li><a href="#visualization3">Visualization 3</a></li>
+    <!-- Add more visualization links as needed -->
+  </ul>
+</nav>
+<main>
+  <section id="visualization1">
+    <!-- Content for Visualization 1 -->
+    <div id="viz1-container">
+      <!-- Place your D3 visualization content here -->
+    </div>
+  </section>
+  <section id="visualization2">
+    <!-- Content for Visualization 2 -->
+    <div id="viz2-container">
+      <!-- Place your D3 visualization content here -->
+    </div>
+  </section>
+  <section id="visualization3">
+    <!-- Content for Visualization 3 -->
+    <div id="viz3-container">
+      <!-- Place your D3 visualization content here -->
+    </div>
+  </section>
+  <!-- Add more sections for additional visualizations -->
+</main>
+<button id="mode-toggle">Dark Mode</button>
+<script>
+  const modeToggle = document.getElementById("mode-toggle");
+  modeToggle.addEventListener("click", toggleDarkMode);
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    modeToggle.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
+  }
+</script>
+</body>
+</html>
