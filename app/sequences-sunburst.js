@@ -1,7 +1,8 @@
 // https://observablehq.com/@kerryrodden/sequences-sunburst
 
 function main(){
-    viewof sunburst = {
+    import("d3")
+    function sunburst()  {
         const root = partition(data);
         const svg = d3.create("svg");
         // Make this into a view, so that the currently hovered sequence is available to the breadcrumb
