@@ -2,7 +2,7 @@
 
 function main(){
     import("d3")
-        function chart() {
+        function createPieChart(data) { //TODO: Replace 'data' with the arguments required to generate the chart
             // Specify the chart’s dimensions.
             const width = 928;
             const height = Math.min(width, 500);

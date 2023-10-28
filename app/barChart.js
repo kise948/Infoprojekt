@@ -1,7 +1,7 @@
 //https://observablehq.com/@d3/horizontal-bar-chart/2?intent=fork
 
 function main(){
-    function chart() {
+    function createBarChart(data) { //TODO: Replace 'data' with the arguments required to generate the chart
         // Specify the chart’s dimensions, based on a bar’s height.
         const barHeight = 25;
         const marginTop = 30;
