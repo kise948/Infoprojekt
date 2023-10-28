@@ -12,10 +12,18 @@ Die Tabellen in der Datenbank dienen der Erfassung und Verwaltung von Informatio
 
 "Degrees": Hier werden die verschiedenen Studiengänge erfasst, z.B. Wirtschaftsinformatik, Medieninformatik usw.
 
-"Labworks": Diese Tabelle enthält Informationen über die Kurse eines Studiengangs in einem bestimmten Semester, z.B. AP1 im SS 2023 für Wirtschaftsinformatik.
+"Semester": Enthält einen Eintrag für jedes Semester, mit Anfangs_ und Enddatum.
+
+"Labwork": Diese Tabelle enthält Informationen über die Praktika eines Course in einem bestimmten Semester, z.B. AP1 im SS 2023 für Wirtschaftsinformatik.
 
 "Report_Card_Entry": Hier werden die Notenhefte für einen Studierenden erfasst, die sich auf ein bestimmtes Labwork beziehen. Zum Beispiel könnte es einen Eintrag für AP1 vom Studierenden X im SS 2023 für Wirtschaftsinformatik Aufgabe 1 geben.
 
 "Report_Card_Entry_Type": In dieser Tabelle werden verschiedene Informationen zu einem Report_Card_Entry erfasst, wie z.B. Testate, Anwesenheit usw. Sie gibt Aufschluss darüber, ob beispielsweise für Aufgabe 1 ein Testat vergeben wurde oder ob der Studierende anwesend war.
+
+"Assignment_Entry": Enthält für jedes Labwork einen Eintrag pro Meilenstein.
+
+"Labworkapplications": Enthält Anmeldungen zu den Praktika.
+
+"Report_Card_Evaluation": Enthält die information, ob ein Student ein Labwork bestanden hat.
 
 Die Tabellen ermöglichen es, die Notenhefte eines Studierenden abzurufen. Es wird empfohlen, sich die Daten genauer anzusehen und bei Fragen Kontakt aufzunehmen.
