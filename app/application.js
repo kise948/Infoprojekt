@@ -1,15 +1,18 @@
 function main(){
     import("d3")
-
     const {Client} = require('pg');
+
+    let course = "c or 1 = 1";
+    let semester = "c or 1 = 1";
+    let degree = "c or 1 = 1";
 
 // Create a PostgreSQL client
     const client = new Client({
-        user: 'your_db_user',
-        host: 'your_db_host',
-        database: 'your_db_name',
-        password: 'your_db_password',
-        port: 5432, // Your PostgreSQL port
+        user: 'postgres',
+        host: 'localhost',
+        database: 'praktikumstool',
+        password: '1234',
+        port: 5432,
     });
 
 // Connect to the PostgreSQL database
@@ -33,32 +36,26 @@ function main(){
     }
 
     // Query 1: Count of lab work applications and successful finishes
-    const query1 = {
-        text: `
+    const query1 = `
     SELECT COUNT(DISTINCT la.id) AS total_applications,
            COUNT(DISTINCT CASE WHEN rce.successfully_finished = true THEN la.id END) AS successful_finishes
-    FROM labworkapplications la
+    FROM LABWORKAPPLICATIONS la
     LEFT JOIN report_card_evaluation rce ON la.labwork = rce.labwork
-    WHERE rce.bool = true AND la.course = $1 AND la.semester = $2 AND la.degree = $3;
-  `,
-        values: [courseUUID, semesterUUID, degreeUUID],
-    };
+    WHERE rce.bool = true AND la.course = ${course} AND la.semester = ${semester} AND la.degree = ${degree};
+  `;
 
 // Query 2: Count of total applicants and participants for each milestone
-    const query2 = {
-        text: `
+    const query2 = `
             SELECT
                 rce.assignment_index AS milestone_index,
                 COUNT(DISTINCT rce.id) AS total_entries
             FROM
-                report_card_entry rce
+                REPORT_CARD_ENTRY rce
             WHERE
                 rce.labwork = $1
             GROUP BY
                 rce.assignment_index;
-        `,
-        values: [courseUUID, semesterUUID, degreeUUID],
-    };
+        `;
 
 // Execute the queries
     client.query(query1)
@@ -77,28 +74,6 @@ function main(){
     process.on('exit', closeDatabase);
 
 
-    //getting example data
-    const labwork = require("../json files/labwork.json")
-    const labworkApp = require("../json files/LABWORKAPPLICATIONS.json")
-    const courses = require("../json files/courses.json")
-    const degrees = require("../json files/degrees.json")
-    const repCardEntry = require("../json files/REPORT_CARD_ENTRY.json")
-    const repCardEntryType = require("../json files/REPORT_CARD_ENTRY_TYPE.json")
-    const repCardEval = require("../json files/REPORT_CARD_EVALUATION.json")
-    //let milestones = new Map()
-    let milestones = []
-
-    // Ideally through the API get a json array containing all entries for a given year and labwork
-    // Data required: REPORT_CARD_ENTRY -> LABEL (of each milestone), sum(*) of entries per milestone label
-    for (let entry of repCardEntry){ //
-        if(entry.LABWORK === "ef693956-6b7a-4731-8d89-f86aff0f14a8"){ //looking for ALL PP - AI associated report card entries
-            let index = entry.ASSIGNMENT_INDEX
-            if(typeof milestones[index] === 'undefined'){
-                milestones[index] = {label: entry.LABEL, participants: 1}
-            } else {milestones[index].participants++}
-        }
-    }
-    console.log(JSON.stringify(milestones))
     console.log("Finished")
 }
 
