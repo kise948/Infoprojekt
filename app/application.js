@@ -6,8 +6,16 @@ async function main() {
     let semesterUUID = '2f070457-52f6-4d42-9efd-9ab947003823'; // SS21
     let degreeUUID = '816a07ed-0f2c-4e4e-9e82-854722dcbc07'; // AI
     let labworkUUID = '5df25fb9-d52d-445a-b6ea-017893c533ac'; // DBS2-AI SS21
+    let labworkUUIDs = ['5df25fb9-d52d-445a-b6ea-017893c533ac', '003d4a10-3357-4ff1-aab1-92d9688f1193', '34043dd9-a72b-4328-8731-b8d061e10e33', '7aa0c375-6906-4a44-b7cc-bc906789c496', '5a81c332-34d9-4ced-b46d-3f02d1ce905d']
 
-// Create a PostgreSQL client
+
+    // Add change event listeners
+    document.getElementById('milestone-dropdown').addEventListener('change', updateLabworkUUID);
+    document.getElementById('query1-button').addEventListener('click', () => executeQuery(1));
+    document.getElementById('query2-button').addEventListener('click', () => executeQuery(2));
+
+
+    // Create a PostgreSQL client
     const client = new Client({
         user: 'postgres',
         host: '127.0.0.1',
@@ -19,31 +27,10 @@ async function main() {
         schemaName: 'public'
     });
 
-// Connect to the PostgreSQL database
+    // Connect to the PostgreSQL database
     client.connect();
 
-// Fetch data from the database
-    async function fetchData(queryString) {
-
-        return client.query(queryString)
-            .then(result => result.rows)
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                throw error;
-            });
-    }
-
-    async function testData() {
-        let q1 = `SELECT * FROM "LABWORK" WHERE "LABEL" LIKE 'DBS2%' and "SEMESTER" = '2f070457-52f6-4d42-9efd-9ab947003823'`;
-        return client.query(q1)
-            .then(result => result.rows)
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                throw error;
-            });
-    }
-
-// Close the database connection when done
+    // Close the database connection when done
     function closeDatabase() {
         client.end();
     }
@@ -60,7 +47,7 @@ async function main() {
             values: [labworkUUID]
 };
 
-    // Query 2: Count of total applicants and participants for each milestone
+        // Query 2: Count of total applicants and participants for each milestone
         const AnmeldungenUndTeilnamenAnMeilensteinen = {
             text: `
                 SELECT
@@ -74,25 +61,61 @@ async function main() {
                     rce."ASSIGNMENT_INDEX";
             `,
             values: [labworkUUID]
-};
+        };
 
-    // Execute the queries
-        client.query(AnmeldungenVsBestanden)
+        // Execute the queries
+        await client.query(AnmeldungenVsBestanden)
             .then(result1 => {
-                console.log(result1);
+                console.log("Query 1 ran successfully!")
+                console.log(result1.rows);
             })
             .catch(error => console.error('Error executing Query 1:', error));
 
-        client.query(AnmeldungenUndTeilnamenAnMeilensteinen)
+        await client.query(AnmeldungenUndTeilnamenAnMeilensteinen)
             .then(result2 => {
-                console.log(result2);
+                console.log("Query 2 ran successfully!")
+                console.log(result2.rows);
             })
             .catch(error => console.error('Error executing Query 2:', error));
 
-    // Make sure to close the database connection when your application exits
+        // Make sure to close the database connection when your application exits
         process.on('exit', closeDatabase);
 
     console.log("Finished")
+
+    // Function to select the query based on the button clicked
+    async function executeQuery(queryNumber) {
+        try {
+            let result;
+            if (queryNumber === 1) {
+                result = await client.query(AnmeldungenVsBestanden);
+            } else if (queryNumber === 2) {
+                result = await client.query(AnmeldungenUndTeilnamenAnMeilensteinen);
+            }
+
+            console.log(result.rows); // Log the result for verification
+
+            // Update the chart with the result (replace this with your chart rendering logic)
+            updateChart(result.rows);
+        } catch (error) {
+            console.error('Error executing query:', error);
+        }
+    }
+
+    // Function to update the chart with data
+    function updateChart(data) {
+        // Replace this with your actual chart rendering logic
+        const chartContainer = document.getElementById('chart-placeholder');
+        chartContainer.innerText = JSON.stringify(data, null, 2);
+    }
+
+    // Function to update labworkUUID based on the selected dropdown value
+    function updateLabworkUUID() {
+        let index = document.getElementById('milestone-dropdown').value
+        labworkUUID = labworkUUIDs[index];
+    }
+
 }
+
 
 main()
