@@ -1,6 +1,7 @@
 async function main() {
     import("d3")
     const {Client} = require('pg');
+    const { createBarChart } = await import('./barchart.js');
 
     let courseUUID = '26c47e55-c7e3-4d78-83b2-cc92670817a7'; // DBS2
     let semesterUUID = '2f070457-52f6-4d42-9efd-9ab947003823'; // SS21
@@ -10,7 +11,7 @@ async function main() {
 
 
     // Add change event listeners
-    document.getElementById('milestone-dropdown').addEventListener('change', updateLabworkUUID);
+    document.getElementById('labwork-dropdown').addEventListener('change', updateLabworkUUID);
     document.getElementById('query1-button').addEventListener('click', () => executeQuery(1));
     document.getElementById('query2-button').addEventListener('click', () => executeQuery(2));
 
@@ -89,22 +90,24 @@ async function main() {
             let result;
             if (queryNumber === 1) {
                 result = await client.query(AnmeldungenVsBestanden);
+                let chart = await createBarChart(result.rows)
+                updateChart(chart)
             } else if (queryNumber === 2) {
                 result = await client.query(AnmeldungenUndTeilnamenAnMeilensteinen);
+                let chart = await createBarChart(result.rows)
+                updateChart(chart)
             }
 
             console.log(result.rows); // Log the result for verification
-
-            // Update the chart with the result (replace this with your chart rendering logic)
-            updateChart(result.rows);
         } catch (error) {
             console.error('Error executing query:', error);
         }
     }
 
+    //TODO: Takes data array and calls the chart in executeQuery
+
     // Function to update the chart with data
     function updateChart(data) {
-        // Replace this with your actual chart rendering logic
         const chartContainer = document.getElementById('chart-placeholder');
         chartContainer.innerText = JSON.stringify(data, null, 2);
     }
