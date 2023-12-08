@@ -104,8 +104,6 @@ async function main() {
         }
     }
 
-    //TODO: Takes data array and calls the chart in executeQuery
-
     // Function to update the chart with data
     function updateChart(data) {
         const chartContainer = document.getElementById('chart-placeholder');
