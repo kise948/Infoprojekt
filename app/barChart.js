@@ -1,7 +1,8 @@
 //https://observablehq.com/@d3/horizontal-bar-chart/2?intent=fork
 
+import 'd3';
+
 async function createBarChart(data) {
-    const d3 = await import("d3")
     // Sort the data based on milestone_index in ascending order
     data.sort((a, b) => a.milestone_index - b.milestone_index);
 
@@ -87,3 +88,5 @@ async function createBarChart(data) {
 
     return svg.node();
 }
+
+export { createBarChart };
