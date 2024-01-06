@@ -1,19 +1,23 @@
+import "d3";
+import {Client} from 'pg';
+import { createBarChart } from './barchart.js';
+import { createPieChart } from './piechart.js';
+
 async function main() {
-    import("d3")
-    const {Client} = require('pg');
-    const { createBarChart } = await import('./barchart.js');
 
     let courseUUID = '26c47e55-c7e3-4d78-83b2-cc92670817a7'; // DBS2
     let semesterUUID = '2f070457-52f6-4d42-9efd-9ab947003823'; // SS21
     let degreeUUID = '816a07ed-0f2c-4e4e-9e82-854722dcbc07'; // AI
     let labworkUUID = '5df25fb9-d52d-445a-b6ea-017893c533ac'; // DBS2-AI SS21
     let labworkUUIDs = ['5df25fb9-d52d-445a-b6ea-017893c533ac', '003d4a10-3357-4ff1-aab1-92d9688f1193', '34043dd9-a72b-4328-8731-b8d061e10e33', '7aa0c375-6906-4a44-b7cc-bc906789c496', '5a81c332-34d9-4ced-b46d-3f02d1ce905d']
+    // In the actual implementation, the labworkUUID would be included in the labwork's site, where the graphics would be available
 
-
-    // Add change event listeners
+    // Add event listeners
     document.getElementById('labwork-dropdown').addEventListener('change', updateLabworkUUID);
     document.getElementById('query1-button').addEventListener('click', () => executeQuery(1));
     document.getElementById('query2-button').addEventListener('click', () => executeQuery(2));
+
+    const chartContainer = document.getElementById('chart-placeholder');
 
 
     // Create a PostgreSQL client
@@ -90,7 +94,7 @@ async function main() {
             let result;
             if (queryNumber === 1) {
                 result = await client.query(AnmeldungenVsBestanden);
-                let chart = await createBarChart(result.rows)
+                let chart = await createPieChart(result.rows)
                 updateChart(chart)
             } else if (queryNumber === 2) {
                 result = await client.query(AnmeldungenUndTeilnamenAnMeilensteinen);
@@ -106,17 +110,16 @@ async function main() {
 
     // Function to update the chart with data
     function updateChart(data) {
-        const chartContainer = document.getElementById('chart-placeholder');
-        chartContainer.innerText = JSON.stringify(data, null, 2);
+        // Set the innerHTML of the chart container with the new SVG content
+        chartContainer.innerHTML = data;
     }
 
     // Function to update labworkUUID based on the selected dropdown value
     function updateLabworkUUID() {
-        let index = document.getElementById('milestone-dropdown').value
+        let index = document.getElementById('labwork-dropdown').value
         labworkUUID = labworkUUIDs[index];
     }
 
 }
-
 
 main()
