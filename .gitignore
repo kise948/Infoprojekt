@@ -11,7 +11,8 @@
 /output.json/
 /package-lock.json/
 /dataSources.local.xml
-app/application.js
+src/application.js
 package-lock.json
-app/application.js
+src/application.js
 package.json
+/.trash/

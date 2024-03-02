@@ -1,14 +1,12 @@
-import "d3";
-import {Client} from 'pg';
-import { createBarChart } from './barchart.js';
-import { createPieChart } from './piechart.js';
+import * as d3 from "d3";
+import pg from 'pg';
+import { createBarChart } from '../src/client/barChart.js';
+import { createPieChart } from '../src/client/piechart.js';
+import { CloudflareSocket } from '../../node_modules/pg/index.js';
 
 async function main() {
 
-    let courseUUID = '26c47e55-c7e3-4d78-83b2-cc92670817a7'; // DBS2
-    let semesterUUID = '2f070457-52f6-4d42-9efd-9ab947003823'; // SS21
-    let degreeUUID = '816a07ed-0f2c-4e4e-9e82-854722dcbc07'; // AI
-    let labworkUUID = '5df25fb9-d52d-445a-b6ea-017893c533ac'; // DBS2-AI SS21
+    let labworkUUID = "5a81c332-34d9-4ced-b46d-3f02d1ce905d";
     let labworkUUIDs = ['5df25fb9-d52d-445a-b6ea-017893c533ac', '003d4a10-3357-4ff1-aab1-92d9688f1193', '34043dd9-a72b-4328-8731-b8d061e10e33', '7aa0c375-6906-4a44-b7cc-bc906789c496', '5a81c332-34d9-4ced-b46d-3f02d1ce905d']
     // In the actual implementation, the labworkUUID would be included in the labwork's site, where the graphics would be available
 
@@ -21,9 +19,9 @@ async function main() {
 
 
     // Create a PostgreSQL client
-    const client = new Client({
+    const client = new pg.Client({
         user: 'postgres',
-        host: '127.0.0.1',
+        host: 'localhost',
         database: 'praktikumstool',
         password: '1234',
         port: 5432,
@@ -71,14 +69,14 @@ async function main() {
         // Execute the queries
         await client.query(AnmeldungenVsBestanden)
             .then(result1 => {
-                console.log("Query 1 ran successfully!")
+                console.log("Query 1 ran successfully!");
                 console.log(result1.rows);
             })
             .catch(error => console.error('Error executing Query 1:', error));
 
         await client.query(AnmeldungenUndTeilnamenAnMeilensteinen)
             .then(result2 => {
-                console.log("Query 2 ran successfully!")
+                console.log("Query 2 ran successfully!");
                 console.log(result2.rows);
             })
             .catch(error => console.error('Error executing Query 2:', error));
@@ -86,20 +84,21 @@ async function main() {
         // Make sure to close the database connection when your application exits
         process.on('exit', closeDatabase);
 
-    console.log("Finished")
+    console.log("Finished");
 
     // Function to select the query based on the button clicked
     async function executeQuery(queryNumber) {
         try {
+            if (labworkUUID === "") throw "No Labwork selected.";
             let result;
             if (queryNumber === 1) {
                 result = await client.query(AnmeldungenVsBestanden);
-                let chart = await createPieChart(result.rows)
-                updateChart(chart)
+                let chart = await createPieChart(result.rows);
+                await updateChart(chart);
             } else if (queryNumber === 2) {
                 result = await client.query(AnmeldungenUndTeilnamenAnMeilensteinen);
-                let chart = await createBarChart(result.rows)
-                updateChart(chart)
+                let chart = await createBarChart(result.rows);
+                await updateChart(chart);
             }
 
             console.log(result.rows); // Log the result for verification
@@ -109,7 +108,7 @@ async function main() {
     }
 
     // Function to update the chart with data
-    function updateChart(data) {
+    async function updateChart(data) {
         // Set the innerHTML of the chart container with the new SVG content
         chartContainer.innerHTML = data;
     }
