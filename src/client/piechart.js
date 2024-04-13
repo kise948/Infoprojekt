@@ -1,24 +1,27 @@
 // Import D3
-import 'd3';
+// noinspection DuplicatedCode
+
+// import * as d3 from 'd3';
+import {scaleOrdinal, pie, create, arc,} from "d3";
 
 // Function to create a pie chart
 async function createPieChart(data) {
     const width = 400;
     const height = 400;
 
-    const color = d3.scaleOrdinal()
+    const color = scaleOrdinal()
         .domain(['Successful Finishes', 'Failures'])
         .range(['#2ecc71', '#e74c3c']);
 
-    const pieGenerator = d3.pie().sort(null).value((d) => d.value);
+    const pieGenerator = pie().sort(null).value((d) => d.value);
     const arcs = pieGenerator(data);
 
-    const arcGenerator = d3.arc()
+    const arcGenerator = arc()
         .innerRadius(0)
         .outerRadius(Math.min(width, height) / 2 - 1);
 
     // Create the SVG container.
-    const svg = d3.create("svg")
+    const svg = create("svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [-width / 2, -height / 2, width, height])
@@ -32,7 +35,7 @@ async function createPieChart(data) {
         .attr("fill", d => color(d.data.name))
         .attr("d", arcGenerator)
         .append("title")
-        .text(d => `${d.data.name}: ${d.data.value.toLocaleString("en-US")}`);
+        .text(d => `${d.data.name}: ${d.data.value.toLocaleString("de-DE")}`);
 
     svg.append("g")
         .attr("text-anchor", "middle")
@@ -48,9 +51,9 @@ async function createPieChart(data) {
             .attr("x", 0)
             .attr("y", "0.7em")
             .attr("fill-opacity", 0.7)
-            .text(d => d.data.value.toLocaleString("en-US")));
+            .text(d => d.data.value.toLocaleString("de_DE")));
 
     return svg.node();
 }
 
-export { createPieChart };
+export default createPieChart;
