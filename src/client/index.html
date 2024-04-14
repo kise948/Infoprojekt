@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Visualization - Labwork Analysis</title>
-
-    <script type="application/module" src="./index.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -106,6 +105,188 @@
     function toggleDarkMode() {
         document.body.classList.toggle("dark-mode");
         modeToggle.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
+    }
+    let index = 0;
+    document.getElementById('labwork-dropdown').addEventListener('change', () => updateLabworkUUID());
+    document.getElementById('query1-button').addEventListener('click', () => executeQuery(1));
+    document.getElementById('query2-button').addEventListener('click', () => executeQuery(2));
+
+    async function executeQuery(queryNumber) {
+        console.log('Query number: ', queryNumber);
+        const urls = [`http://localhost:3000/api/anmeldungen-vs-bestanden/${index}`,
+            `http://localhost:3000/api/anmeldungen-und-teilnahmen/${index}`];
+        const url = urls[queryNumber-1];
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.error('Error fetching data:', response.statusText);
+            return;
+        }
+
+        const res = await response.json(); // Parse the JSON response
+        let resData = res.rows;
+
+        if (queryNumber === 1) {
+            console.log('Executing query number: ', queryNumber);
+            const chart = await createPieChart(resData);
+            await updateChart(chart);
+        } else if (queryNumber === 2) {
+            console.log('Executing query number: ', queryNumber);
+            const chart = await createBarChart(resData);
+            await updateChart(chart);
+        }
+    }
+
+    function updateLabworkUUID() {
+        index = document.getElementById('labwork-dropdown').value
+        console.log('Updating Labwork UUID');
+    }
+
+    async function updateChart(svg) {
+        console.log('Updating Chart...');
+        // Clear the placeholder content before rendering
+        const chartContainer = document.getElementById('chart-placeholder');
+        chartContainer.innerHTML = "";
+        console.log('Chart emptied...');
+        chartContainer.appendChild(svg);
+        console.log('Chart updated!');
+    }
+
+    async function createBarChart(data) {
+        // Sort the data based on milestone_index in ascending order
+        data.sort((a, b) => a.milestone_index - b.milestone_index);
+
+        // Specify the chart’s dimensions, based on a bar’s height.
+        const barHeight = 25;
+        const marginTop = 30;
+        const marginRight = 20;
+        const marginBottom = 50; // Increased margin for axis labels
+        const marginLeft = 60;
+        const width = 600; // Adjust the width as needed
+        const height = Math.ceil((data.length + 0.1) * barHeight) + marginTop + marginBottom;
+
+        // Create the scales.
+        const x = d3.scaleLinear()
+            .domain([0, d3.max(data, d => parseInt(d.total_entries))])
+            .range([marginLeft, width - marginRight]);
+
+        const y = d3.scaleBand()
+            .domain(data.map(d => d.milestone_index))
+            .rangeRound([marginTop, height - marginBottom])
+            .padding(0.1);
+
+        // Create the SVG container.
+        const svg = d3.create("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", [0, 0, width, height])
+            .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;");
+
+        // Append a rect for each milestone.
+        svg.append("g")
+            .attr("fill", "steelblue")
+            .selectAll()
+            .data(data)
+            .join("rect")
+            .attr("x", x(0))
+            .attr("y", (d) => y(d.milestone_index))
+            .attr("width", (d) => x(parseInt(d.total_entries)) - x(0))
+            .attr("height", y.bandwidth());
+
+        // Append a label for each milestone.
+        svg.append("g")
+            .attr("fill", "white")
+            .attr("text-anchor", "end")
+            .selectAll()
+            .data(data)
+            .join("text")
+            .attr("x", (d) => x(parseInt(d.total_entries)))
+            .attr("y", (d) => y(d.milestone_index) + y.bandwidth() / 2)
+            .attr("dy", "0.35em")
+            .attr("dx", -4)
+            .text((d) => d.total_entries)
+            .call((text) => text.filter(d => x(parseInt(d.total_entries)) - x(0) < 20) // short bars
+                .attr("dx", +4)
+                .attr("fill", "black")
+                .attr("text-anchor", "start"));
+
+        // Create the axes.
+        svg.append("g")
+            .attr("transform", `translate(0,${marginTop})`)
+            .call(d3.axisTop(x).ticks(width / 80))
+            .call(g => g.select(".domain").remove());
+
+        svg.append("g")
+            .attr("transform", `translate(${marginLeft},0)`)
+            .call(d3.axisLeft(y).tickSizeOuter(0))
+            .append("text")
+            .attr("x", 2)
+            .attr("y", marginBottom - 10) // Adjust the position of the label
+            .attr("fill", "#000")
+            .attr("font-weight", "bold")
+            .attr("text-anchor", "start")
+            .text("Milestones");
+
+        // X-axis label
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", height - 10)
+            .attr("text-anchor", "middle")
+            .attr("fill", "#000")
+            .attr("font-weight", "bold")
+            .text("Students Participating");
+
+        return svg.node();
+    }
+
+    async function createPieChart(data) {
+        const width = 400;
+        const height = 400;
+
+        const color = d3.scaleOrdinal()
+            .domain(['Successful Finishes', 'Failures'])
+            .range(['#2ecc71', '#e74c3c']);
+
+        const pieGenerator = d3.pie().sort(null).value((d) => d.value);
+        const arcs = pieGenerator(data);
+
+        const arcGenerator = d3.arc()
+            .innerRadius(0)
+            .outerRadius(Math.min(width, height) / 2 - 1);
+
+        // Create the SVG container.
+        const svg = d3.create("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", [-width / 2, -height / 2, width, height])
+            .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;");
+
+        svg.append("g")
+            .attr("stroke", "white")
+            .selectAll()
+            .data(arcs)
+            .join("path")
+            .attr("fill", d => color(d.data.name))
+            .attr("d", arcGenerator)
+            .append("title")
+            .text(d => `${d.data.name}`);
+
+        svg.append("g")
+            .attr("text-anchor", "middle")
+            .selectAll()
+            .data(arcs)
+            .join("text")
+            .attr("transform", d => `translate(${arcGenerator.centroid(d)})`)
+            .call(text => text.append("tspan")
+                .attr("y", "-0.4em")
+                .attr("font-weight", "bold")
+                .text(d => d.data.name))
+            .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
+                .attr("x", 0)
+                .attr("y", "0.7em")
+                .attr("fill-opacity", 0.7)
+                .text(d => d.data.name.toLocaleString("de_DE")));
+
+        return svg.node();
     }
 </script>
 
