@@ -1,6 +1,6 @@
 //https://observablehq.com/@d3/horizontal-bar-chart/2?intent=fork
 
-import 'd3';
+import {scaleLinear, max, scaleBand, create, axisLeft, axisTop} from "d3";
 
 async function createBarChart(data) {
     // Sort the data based on milestone_index in ascending order
@@ -16,17 +16,17 @@ async function createBarChart(data) {
     const height = Math.ceil((data.length + 0.1) * barHeight) + marginTop + marginBottom;
 
     // Create the scales.
-    const x = d3.scaleLinear()
-        .domain([0, d3.max(data, d => parseInt(d.total_entries))])
+    const x = scaleLinear()
+        .domain([0, max(data, d => parseInt(d.total_entries))])
         .range([marginLeft, width - marginRight]);
 
-    const y = d3.scaleBand()
+    const y = scaleBand()
         .domain(data.map(d => d.milestone_index))
         .rangeRound([marginTop, height - marginBottom])
         .padding(0.1);
 
     // Create the SVG container.
-    const svg = d3.create("svg")
+    const svg = create("svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [0, 0, width, height])
@@ -63,12 +63,12 @@ async function createBarChart(data) {
     // Create the axes.
     svg.append("g")
         .attr("transform", `translate(0,${marginTop})`)
-        .call(d3.axisTop(x).ticks(width / 80))
+        .call(axisTop(x).ticks(width / 80))
         .call(g => g.select(".domain").remove());
 
     svg.append("g")
         .attr("transform", `translate(${marginLeft},0)`)
-        .call(d3.axisLeft(y).tickSizeOuter(0))
+        .call(axisLeft(y).tickSizeOuter(0))
         .append("text")
         .attr("x", 2)
         .attr("y", marginBottom - 10) // Adjust the position of the label
