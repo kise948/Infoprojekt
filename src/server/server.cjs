@@ -7,6 +7,10 @@ app.use(cors());
 
 const port = 3000;
 
+let labworkUUID = "5a81c332-34d9-4ced-b46d-3f02d1ce905d";
+let labworkUUIDs = ['5df25fb9-d52d-445a-b6ea-017893c533ac', '003d4a10-3357-4ff1-aab1-92d9688f1193',
+    '34043dd9-a72b-4328-8731-b8d061e10e33', '7aa0c375-6906-4a44-b7cc-bc906789c496', '5a81c332-34d9-4ced-b46d-3f02d1ce905d']
+
 function clientFactory (){
     return new pg.Client({
         user: 'postgres',
@@ -33,7 +37,7 @@ async function executeQuery(queryText, values) {
 app.get('/api/anmeldungen-vs-bestanden/:labworkUUID', async (req, res) => {
     const client = clientFactory()
     client.connect();
-    const labworkUUID = req.params.labworkUUID;
+    const labworkUUID = labworkUUIDs[req.params.labworkUUID];
     const query = {
         text: `
                 SELECT COUNT(DISTINCT la."ID") AS total_applications,
@@ -57,7 +61,7 @@ app.get('/api/anmeldungen-vs-bestanden/:labworkUUID', async (req, res) => {
 app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
     const client = clientFactory();
     client.connect();
-    const labworkUUID = req.params.labworkUUID;
+    const labworkUUID = labworkUUIDs[req.params.labworkUUID];
     const query = {
         text: `
                 SELECT
