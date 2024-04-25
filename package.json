@@ -3,7 +3,7 @@
   "name": "my-project",
   "version": "1.0.0",
   "scripts": {
-    "start": "live-server ./src/client && node ./src/server/server.cjs"
+    "start": ".\\src\\client\\index.html && node .\\src\\server\\server.cjs"
   },
   "dependencies": {
     "@types/d3": "^7.4.3",
