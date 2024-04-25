@@ -7,9 +7,7 @@
 /dataSources/
 /node_modules/
 /.idea/
-/package.json/
 /output.json/
-/package-lock.json/
 /dataSources.local.xml
 src/application.js
 package-lock.json
