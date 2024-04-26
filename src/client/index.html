@@ -238,19 +238,31 @@
 
         return svg.node();
     }
+
     async function createPieChart(data) {
         const width = 1500;
         const height = 600;
 
-        const color = d3.scaleOrdinal()
-            .domain(['Successful Finishes', 'Failures'])
-            .range(['#2ecc71', '#e74c3c']);
+        const totalApplications = data[0].total_applications;
+        const successfulFinishes = data[0].successful_finishes;
+        const failureCount = totalApplications - successfulFinishes;
+        const successPercent = 100 / totalApplications * successfulFinishes
+        const failurePercent = 100 - successPercent
+        console.log(totalApplications)
+        console.log(successfulFinishes)
+        console.log(failureCount)
+        console.log(totalApplications)
+        console.log(totalApplications)
 
         // Transform the data to the expected format
         const chartData = [
-            { name: 'Successful Finishes', value: data[0].successful_finishes },
-            { name: 'Failures', value: data[0].total_applications - data[0].successful_finishes },
+            { name: 'Successful Finishes', value: successfulFinishes },
+            { name: 'Failures', value: failureCount },
         ];
+
+        const color = d3.scaleOrdinal()
+            .domain(['Successful Finishes', 'Failures'])
+            .range(['#2ecc71', '#e74c3c']);
 
         const pieGenerator = d3.pie().sort(null).value((d) => d.value);
         const arcs = pieGenerator(chartData);
@@ -271,31 +283,35 @@
             .selectAll()
             .data(arcs)
             .join("path")
-            .attr("fill", d => color(d.data.name))
+            .attr("fill", (d) => color(d.data.name))
             .attr("d", arcGenerator)
             .append("title")
-            .text(d => `${d.data.name}`);
+            .text((d) => `${d.data.name}`);
 
         svg.append("g")
             .attr("text-anchor", "middle")
             .selectAll()
             .data(arcs)
             .join("text")
-            .attr("transform", d => `translate(${arcGenerator.centroid(d)})`)
-            .call(text => text.append("tspan")
+            .attr("transform", (d) => `translate(${arcGenerator.centroid(d)})`)
+            .call((text) => text.append("tspan")
                 .attr("y", "-0.4em")
                 .attr("font-weight", "bold")
-                .text(d => d.data.name))
-            .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
+                .text((d) => d.data.name))
+            .call((text) => text.filter((d) => (d.endAngle - d.startAngle) > 0.25).append("tspan")
                 .attr("x", 0)
                 .attr("y", "0.7em")
                 .attr("fill-opacity", 0.7)
-                .text(d => d.data.value.toLocaleString("de_DE")));
+                .text((d) => {
+                    if (d.data.name === 'Successful Finishes') {
+                        return `(${successPercent.toFixed(2)}%)`;
+                    } else {
+                        return `(${failurePercent.toFixed(2)}%)`;
+                    }
+                }));
 
         return svg.node();
     }
-
-
 
 </script>
 
