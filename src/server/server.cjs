@@ -40,11 +40,10 @@ app.get('/api/anmeldungen-vs-bestanden/:labworkUUID', async (req, res) => {
     const labworkUUID = labworkUUIDs[req.params.labworkUUID];
     const query = {
         text: `
-                SELECT COUNT(DISTINCT la."ID") AS total_applications,
-                COUNT(DISTINCT CASE WHEN rce."BOOL" = true THEN la."ID" END) AS successful_finishes
-                FROM "LABWORKAPPLICATIONS" la
-                LEFT JOIN "REPORT_CARD_EVALUATION" rce ON la."LABWORK" = rce."LABWORK"
-                WHERE la."LABWORK" = $1;
+            SELECT COUNT(DISTINCT "ID") as total_applications,
+                   COUNT(DISTINCT CASE WHEN "BOOL" = True THEN "ID" END) AS successful_finishes
+            FROM "REPORT_CARD_EVALUATION"
+            WHERE "LABWORK" = $1
             `,
         values: [labworkUUID]
     };
