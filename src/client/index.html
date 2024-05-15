@@ -83,14 +83,30 @@
 <button id="mode-toggle">Dark Mode</button>
 
 <div id="dropdown-container">
+    <label for="degree-dropdown">Select Milestone:</label>
+    <select id="degree-dropdown">
+        <option value="" disabled selected>Pick a Degree (optional)</option>
+        <option value=0>AI</option>
+        <option value=1>WI</option>
+        <option value=2>MI</option>
+    </select>
+
+    <label for="course-dropdown">Select Milestone:</label>
+    <select id="course-dropdown">
+        <option value="" disabled selected>Pick a Degree (optional)</option>
+        <option value=0>KTN</option>
+        <option value=1>DBS1</option>
+        <option value=2>AP1</option>
+    </select>
+
     <label for="labwork-dropdown">Select Milestone:</label>
     <select id="labwork-dropdown">
-        <option value="">Select Labwork</option>
-        <option value="0">Labwork 1</option>
-        <option value="1">Labwork 2</option>
-        <option value="2">Labwork 3</option>
-        <option value="3">Labwork 4</option>
-        <option value="4">Labwork 5</option>
+        <option value="" disabled selected>Select Labwork</option>
+        <option value=0>Labwork 1</option>
+        <option value=1>Labwork 2</option>
+        <option value=2>Labwork 3</option>
+        <option value=3>Labwork 4</option>
+        <option value=4>Labwork 5</option>
     </select>
 </div>
 
@@ -107,8 +123,14 @@
         document.body.classList.toggle("dark-mode");
         modeToggle.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
     }
-    let index = 0;
+
+    let labworkUUID = null;
+    let courseIndex = 0;
+    let degreeIndex = 0;
+
     document.getElementById('labwork-dropdown').addEventListener('change', () => updateLabworkUUID());
+    document.getElementById('degree-dropdown').addEventListener('change', () => updateDegreeIndex());
+    document.getElementById('course-dropdown').addEventListener('change', () => updateCourseIndex());
     document.getElementById('query1-button').addEventListener('click', () => executeQuery(1));
     document.getElementById('query2-button').addEventListener('click', () => executeQuery(2));
     document.getElementById('query3-button').addEventListener('click', () => executeQuery(3));
@@ -144,8 +166,50 @@
     }
 
     function updateLabworkUUID() {
-        index = document.getElementById('labwork-dropdown').value
+        labworkUUID = document.getElementById('labwork-dropdown').value
         console.log('Updating Labwork UUID');
+    }
+
+    function updateCourseIndex() {
+        labworkUUID = document.getElementById('course-dropdown').value
+        console.log('Updating Course index');
+        updateLabworkDropdown()
+    }
+
+    function updateDegreeIndex() {
+        labworkUUID = document.getElementById('degree-dropdown').value
+        console.log('Updating Degree index');
+        updateLabworkDropdown()
+    }
+
+    async function updateLabworkDropdown() {
+        const labworkDropdown = document.getElementById('labwork-dropdown')
+
+        const requestBodyData = {
+            courseIndex: courseIndex,
+            degreeIndex: degreeIndex
+        };
+        const requestBody = JSON.stringify(requestBodyData);
+        const requestOptions = {
+            body: requestBody
+        };
+
+        const response = await fetch('http://localhost:3000/api/labworks', requestOptions);
+        if (!response.ok) {
+            console.error('Error fetching data:', response.statusText);
+            return;
+        }
+
+        const res = await response.json(); // Parse the JSON response
+
+        labworkDropdown.innerHTML = '';
+
+        res.forEach(labwork => {
+                const labworkElement = document.createElement('labwork');
+                labworkElement.value = labwork.id;
+                labworkElement.text = labwork.name;
+                labworkDropdown.add(labworkElement);
+            })
     }
 
     async function updateChart(svg) {
@@ -255,11 +319,6 @@
         const failureCount = totalApplications - successfulFinishes;
         const successPercent = 100 / totalApplications * successfulFinishes
         const failurePercent = 100 - successPercent
-        console.log(totalApplications)
-        console.log(successfulFinishes)
-        console.log(failureCount)
-        console.log(totalApplications)
-        console.log(totalApplications)
 
         // Transform the data to the expected format
         const chartData = [
