@@ -38,7 +38,7 @@ app.get('/api/Labworks/', async (req, res) => {
             SELECT "ID" as value,
                    "LABEL" AS label
             FROM "LABWORK"
-            WHERE "SEMESTER" = COALESCE($1, "SEMESTER")
+            WHERE "SEMESTER" = $1
               AND "COURSE" = COALESCE($2, "COURSE")
               AND "DEGREE" = COALESCE($3, "DEGREE")
             `,

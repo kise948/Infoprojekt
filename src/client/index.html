@@ -122,7 +122,7 @@
     let courseIndex = 0;
     let degreeIndex = 0;
 
-    document.getElementById('labwork-dropdown').addEventListener('load', () => updateLabworkDropdown())
+    document.addEventListener('DOMContentLoaded', () => updateLabworkDropdown());
     document.getElementById('labwork-dropdown').addEventListener('change', () => updateLabworkUUID());
     document.getElementById('degree-dropdown').addEventListener('change', () => updateDegreeIndex());
     document.getElementById('course-dropdown').addEventListener('change', () => updateCourseIndex());
@@ -166,13 +166,13 @@
     }
 
     function updateCourseIndex() {
-        labworkUUID = document.getElementById('course-dropdown').value
+        courseIndex = document.getElementById('course-dropdown').value
         console.log('Updating Course index');
         updateLabworkDropdown()
     }
 
     function updateDegreeIndex() {
-        labworkUUID = document.getElementById('degree-dropdown').value
+        degreeIndex = document.getElementById('degree-dropdown').value
         console.log('Updating Degree index');
         updateLabworkDropdown()
     }
