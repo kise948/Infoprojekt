@@ -12,7 +12,7 @@ let degreeUUID = null;
 let courseUUID = null;
 let labworkUUID = null;
 let degreeUUIDs = [null, '816a07ed-0f2c-4e4e-9e82-854722dcbc07', 'dc08c07e-6159-4519-9a6b-0635976e7fa3', 'c2aa93b4-9c49-4d0b-b550-a3d7a31fb3cd'];
-let courseUUIDs = [null, '0fccbb81-8d70-456b-a2c9-cd09d9fc5253', '26c47e55-c7e3-4d78-83b2-cc92670817a7', '939eb0ab-7474-428c-8e6e-98c48597812e'];
+let courseUUIDs = [null, '0c23b50c-e486-4cdb-b36b-b14031c3df9e', '0f219d9d-d016-4b54-8dbf-8072c84ee016', 'a3a0b357-39ff-4f9d-9090-ef84bf778eb2'];
 
 
 function clientFactory (){
@@ -31,14 +31,18 @@ function clientFactory (){
 app.get('/api/Labworks/', async (req, res) => {
     const client = clientFactory()
     client.connect();
-    degreeUUID = degreeUUIDs[req.query.degreeIndex];
-    courseUUID = courseUUIDs[req.query.courseIndex];
+
+    const degreeIndex = parseInt(req.query.degreeIndex);
+    const courseIndex = parseInt(req.query.courseIndex);
+    degreeUUID = degreeUUIDs[degreeIndex];
+    courseUUID = courseUUIDs[courseIndex];
+
     const query = {
         text: `
             SELECT "ID" as value,
                    "LABEL" AS label
             FROM "LABWORK"
-            WHERE "SEMESTER" = $1
+            WHERE "SEMESTER" = COALESCE($1, "SEMESTER")
               AND "COURSE" = COALESCE($2, "COURSE")
               AND "DEGREE" = COALESCE($3, "DEGREE")
             `,
@@ -55,41 +59,46 @@ app.get('/api/Labworks/', async (req, res) => {
 });
 
 app.get('/api/anmeldungen-vs-bestanden/:labworkUUID', async (req, res) => {
-    const client = clientFactory()
+    const client = clientFactory();
     client.connect();
-    const labworkUUID = labworkUUIDs[req.params.labworkUUID];
+
+    const labworkUUID = req.params.labworkUUID || null;
+
     const query = {
         text: `
-            SELECT COUNT(DISTINCT "ID") as total_applications,
-                   COUNT(DISTINCT CASE WHEN "BOOL" = True THEN "ID" END) AS successful_finishes
-            FROM "REPORT_CARD_EVALUATION"
-            WHERE "LABWORK" = COALESCE($1, "LABWORK") AND "SEMESTER" = $2
+            SELECT COUNT(DISTINCT rce."ID") as total_applications,
+                   COUNT(DISTINCT CASE WHEN rce."BOOL" = True THEN rce."ID" END) AS successful_finishes
+            FROM "REPORT_CARD_EVALUATION" rce, "LABWORK" lab
+            WHERE rce."LABWORK" = COALESCE($1, rce."LABWORK") 
+              AND rce."LABWORK" = lab."ID"
+              AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
             `,
         values: [labworkUUID, semesterUUID]
     };
-    const data = await client.query(query)
+    const data = await client.query(query);
     if (data) {
         console.log(data.rows);
         res.json(data);
     } else {
         res.status(500).send('Error fetching data');
     }
-    client.end()
+    client.end();
 });
+
 
 app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
     const client = clientFactory();
     client.connect();
-    const labworkUUID = labworkUUIDs[req.params.labworkUUID];
+    labworkUUID = req.params.labworkUUID;
     const query = {
         text: `
             SELECT
                 rce."ASSIGNMENT_INDEX" AS milestone_index,
                 COUNT(rce."ID") AS total_entries
             FROM
-                "REPORT_CARD_ENTRY" rce, "LABWORKS" lab
+                "REPORT_CARD_ENTRY" rce, "LABWORK" lab
             WHERE
-                rce."LABWORK" = COALESCE($1, rce."LABWORK") AND rce."LABWORK" = lab."ID" AND lab."SEMESTER" = $2
+                rce."LABWORK" = COALESCE($1, rce."LABWORK") AND rce."LABWORK" = lab."ID" AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
             GROUP BY
                 rce."ASSIGNMENT_INDEX";
         `,
@@ -108,7 +117,7 @@ app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
 app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
     const client = clientFactory();
     client.connect();
-    const labworkUUID = labworkUUIDs[req.params.labworkUUID];
+    const labworkUUID = req.params.labworkUUID;
     const query = {
         text: `
             SELECT
@@ -116,9 +125,9 @@ app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
                 COUNT(rce."ID") AS total_entries,
                 MAX(rce."DATE") AS max_date  
             FROM
-                "REPORT_CARD_ENTRY" rce, "LABWORKS" lab
+                "REPORT_CARD_ENTRY" rce, "LABWORK" lab
             WHERE
-                rce."LABWORK" = COALESCE($1, rce."LABWORK") AND rce."LABWORK" = lab."ID" AND lab."SEMESTER" = $2
+                rce."LABWORK" = COALESCE($1, rce."LABWORK") AND rce."LABWORK" = lab."ID" AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
             GROUP BY
                 rce."ASSIGNMENT_INDEX";
         `,

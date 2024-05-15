@@ -179,17 +179,14 @@
 
     async function updateLabworkDropdown() {
         const labworkDropdown = document.getElementById('labwork-dropdown')
+        const baseUrl = 'http://localhost:3000/api/labworks';
 
-        const requestBodyData = {
-            courseIndex: courseIndex,
-            degreeIndex: degreeIndex
-        };
-        const requestBody = JSON.stringify(requestBodyData);
-        const requestOptions = {
-            body: requestBody
-        };
+        const params = new URLSearchParams();
+        params.append('degreeIndex', degreeIndex);
+        params.append('courseIndex', courseIndex);
 
-        const response = await fetch('http://localhost:3000/api/labworks', requestOptions);
+        const url = `${baseUrl}?${params.toString()}`;
+        const response = await fetch(url);
         if (!response.ok) {
             console.error('Error fetching data:', response.statusText);
             return;
@@ -199,12 +196,12 @@
 
         labworkDropdown.innerHTML = '';
 
-        res.forEach(labwork => {
-                const labworkElement = document.createElement('labwork');
-                labworkElement.value = labwork.id;
-                labworkElement.text = labwork.name;
-                labworkDropdown.add(labworkElement);
-            })
+        res.rows.forEach(labwork => {
+            const labworkElement = document.createElement('option');
+            labworkElement.value = labwork.value; // Update this line
+            labworkElement.text = labwork.label; // Update this line
+            labworkDropdown.add(labworkElement);
+        });
     }
 
     async function updateChart(svg) {
