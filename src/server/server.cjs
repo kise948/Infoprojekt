@@ -63,16 +63,16 @@ app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
     const labworkUUID = labworkUUIDs[req.params.labworkUUID];
     const query = {
         text: `
-                SELECT
-                    rce."ASSIGNMENT_INDEX" AS milestone_index,
-                    COUNT(rce."ID") AS total_entries
-                FROM
-                    "REPORT_CARD_ENTRY" rce
-                WHERE
-                    rce."LABWORK" = $1
-                GROUP BY
-                    rce."ASSIGNMENT_INDEX";
-            `,
+            SELECT
+                rce."ASSIGNMENT_INDEX" AS milestone_index,
+                COUNT(rce."ID") AS total_entries
+            FROM
+                "REPORT_CARD_ENTRY" rce
+            WHERE
+                rce."LABWORK" = $1
+            GROUP BY
+                rce."ASSIGNMENT_INDEX";
+        `,
         values: [labworkUUID]
     };
     const data = await client.query(query);
@@ -84,5 +84,36 @@ app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
     }
     client.end();
 });
+
+app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
+    const client = clientFactory();
+    client.connect();
+    const labworkUUID = labworkUUIDs[req.params.labworkUUID];
+    const query = {
+        text: `
+            SELECT
+                rce."ASSIGNMENT_INDEX" AS milestone_index,
+                COUNT(rce."ID") AS total_entries,
+                MAX(rce."DATE") AS max_date  
+            FROM
+                "REPORT_CARD_ENTRY" rce
+            WHERE
+                rce."LABWORK" = $1
+            GROUP BY
+                rce."ASSIGNMENT_INDEX";
+        `,
+        values: [labworkUUID]
+    };
+        const data = await client.query(query);
+        if (data) {
+            console.log(data.rows);
+            res.json(data.rows);
+        }else{
+        console.error('Error fetching data', error);
+        res.status(500).send('Error fetching data');
+    }
+        client.end();
+});
+
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
