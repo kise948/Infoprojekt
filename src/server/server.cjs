@@ -11,10 +11,8 @@ let semesterUUID = 'fdd602d4-660f-416f-9eac-88aa2596ac8a'; // WiSe 21/22
 let degreeUUID = null;
 let courseUUID = null;
 let labworkUUID = null;
-let degreeUUIDs = ['816a07ed-0f2c-4e4e-9e82-854722dcbc07', 'dc08c07e-6159-4519-9a6b-0635976e7fa3', 'c2aa93b4-9c49-4d0b-b550-a3d7a31fb3cd'];
-let courseUUIDs = ['0fccbb81-8d70-456b-a2c9-cd09d9fc5253', '26c47e55-c7e3-4d78-83b2-cc92670817a7', '939eb0ab-7474-428c-8e6e-98c48597812e'];
-let labworkUUIDs = ['5df25fb9-d52d-445a-b6ea-017893c533ac', '003d4a10-3357-4ff1-aab1-92d9688f1193',
-    '34043dd9-a72b-4328-8731-b8d061e10e33', '7aa0c375-6906-4a44-b7cc-bc906789c496', '5a81c332-34d9-4ced-b46d-3f02d1ce905d'];
+let degreeUUIDs = [null, '816a07ed-0f2c-4e4e-9e82-854722dcbc07', 'dc08c07e-6159-4519-9a6b-0635976e7fa3', 'c2aa93b4-9c49-4d0b-b550-a3d7a31fb3cd'];
+let courseUUIDs = [null, '0fccbb81-8d70-456b-a2c9-cd09d9fc5253', '26c47e55-c7e3-4d78-83b2-cc92670817a7', '939eb0ab-7474-428c-8e6e-98c48597812e'];
 
 
 function clientFactory (){
@@ -30,20 +28,11 @@ function clientFactory (){
     });
 }
 
-async function executeQuery(queryText, values) {
-    try {
-        const result = await client.query(queryText, values);
-        return result.rows;
-    } catch (error) {
-        console.error('Error executing query:', error);
-        return null;
-    }
-}
-
 app.get('/api/Labworks/', async (req, res) => {
     const client = clientFactory()
     client.connect();
-    const labworkUUID = labworkUUIDs[req.params.labworkUUID];
+    degreeUUID = degreeUUIDs[req.query.degreeIndex];
+    courseUUID = courseUUIDs[req.query.courseIndex];
     const query = {
         text: `
             SELECT "ID" as value,
@@ -65,8 +54,7 @@ app.get('/api/Labworks/', async (req, res) => {
     client.end()
 });
 
-// TODO: Change WHERE clause to check for SEMESTER and COURSE
-app.get('/api/anmeldungen-vs-bestanden/:courseUUID', async (req, res) => {
+app.get('/api/anmeldungen-vs-bestanden/:labworkUUID', async (req, res) => {
     const client = clientFactory()
     client.connect();
     const labworkUUID = labworkUUIDs[req.params.labworkUUID];
@@ -75,9 +63,9 @@ app.get('/api/anmeldungen-vs-bestanden/:courseUUID', async (req, res) => {
             SELECT COUNT(DISTINCT "ID") as total_applications,
                    COUNT(DISTINCT CASE WHEN "BOOL" = True THEN "ID" END) AS successful_finishes
             FROM "REPORT_CARD_EVALUATION"
-            WHERE "LABWORK" = COALESCE($1, "LABWORK")
+            WHERE "LABWORK" = COALESCE($1, "LABWORK") AND "SEMESTER" = $2
             `,
-        values: [labworkUUID]
+        values: [labworkUUID, semesterUUID]
     };
     const data = await client.query(query)
     if (data) {
@@ -99,13 +87,13 @@ app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
                 rce."ASSIGNMENT_INDEX" AS milestone_index,
                 COUNT(rce."ID") AS total_entries
             FROM
-                "REPORT_CARD_ENTRY" rce
+                "REPORT_CARD_ENTRY" rce, "LABWORKS" lab
             WHERE
-                rce."LABWORK" = $1
+                rce."LABWORK" = COALESCE($1, rce."LABWORK") AND rce."LABWORK" = lab."ID" AND lab."SEMESTER" = $2
             GROUP BY
                 rce."ASSIGNMENT_INDEX";
         `,
-        values: [labworkUUID]
+        values: [labworkUUID, semesterUUID]
     };
     const data = await client.query(query);
     if (data) {
@@ -128,13 +116,13 @@ app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
                 COUNT(rce."ID") AS total_entries,
                 MAX(rce."DATE") AS max_date  
             FROM
-                "REPORT_CARD_ENTRY" rce
+                "REPORT_CARD_ENTRY" rce, "LABWORKS" lab
             WHERE
-                rce."LABWORK" = $1
+                rce."LABWORK" = COALESCE($1, rce."LABWORK") AND rce."LABWORK" = lab."ID" AND lab."SEMESTER" = $2
             GROUP BY
                 rce."ASSIGNMENT_INDEX";
         `,
-        values: [labworkUUID]
+        values: [labworkUUID, semesterUUID]
     };
         const data = await client.query(query);
         if (data) {
