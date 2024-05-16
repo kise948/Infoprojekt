@@ -85,7 +85,7 @@
 <div id="dropdown-container">
     <label for="degree-dropdown">Degree:</label>
     <select id="degree-dropdown">
-        <option value=0 disabled selected>Pick a Degree (optional)</option>
+        <option value=0 selected>Pick a Degree (optional)</option>
         <option value=1>AI</option>
         <option value=2>WI</option>
         <option value=3>MI</option>
@@ -93,7 +93,7 @@
 
     <label for="course-dropdown">Course:</label>
     <select id="course-dropdown">
-        <option value=0 disabled selected>Pick a Course (optional)</option>
+        <option value=0 selected>Pick a Course (optional)</option>
         <option value=1>KTN</option>
         <option value=2>DBS1</option>
         <option value=3>AP1</option>
@@ -196,6 +196,12 @@
 
         labworkDropdown.innerHTML = '';
 
+        const labworkPlaceholder = document.createElement('option');
+        labworkPlaceholder.value = null;
+        labworkPlaceholder.label = "Select a Labwork (optional)";
+        labworkPlaceholder.defaultSelected = true;
+        labworkDropdown.add(labworkPlaceholder);
+
         res.rows.forEach(labwork => {
             const labworkElement = document.createElement('option');
             labworkElement.value = labwork.value; // Update this line
@@ -278,25 +284,26 @@
             .call(g => g.select(".domain").remove());
 
         svg.append("g")
-            .attr("transform", `translate(${marginLeft},0)`)
+            .attr("transform", `translate(${marginLeft},0) `)
             .call(d3.axisLeft(y).tickSizeOuter(0))
 
+        // Y-axis label
         svg.append("text")
             .attr("x", 0)
             .attr("y", height/2)
-            .attr("fill", "#000")
-            .text("Milestones");
+            .text("Milestones")
+            .attr("fill", "#808080");
 
         // X-axis label
         svg.append("text")
             .attr("x", width / 2)
             .attr("y", height-10)
+            .attr("fill", "#808080")
             .attr("text-anchor", "middle")
             .text("Students Participating");
 
         svg.selectAll("text")
             .attr("font-site", "50px")
-            .attr("fill", "#000")
             .attr("font-weight", "bold")
 
         return svg.node();
