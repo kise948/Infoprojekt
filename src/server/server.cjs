@@ -28,6 +28,12 @@ function clientFactory (){
     });
 }
 
+function isValidUUID(str) {
+    // Regular expression to check for a valid UUID format
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    return uuidRegex.test(str);
+}
+
 app.get('/api/Labworks/', async (req, res) => {
     const client = clientFactory()
     client.connect();
@@ -62,18 +68,20 @@ app.get('/api/anmeldungen-vs-bestanden/:labworkUUID', async (req, res) => {
     const client = clientFactory();
     client.connect();
 
-    const labworkUUID = req.params.labworkUUID || null;
+    labworkUUID = isValidUUID(req.params.labworkUUID) ? req.params.labworkUUID : null;
 
     const query = {
         text: `
             SELECT COUNT(DISTINCT rce."ID") as total_applications,
-                   COUNT(DISTINCT CASE WHEN rce."BOOL" = True THEN rce."ID" END) AS successful_finishes
+                   COUNT(DISTINCT CASE WHEN rce."BOOL" IS True THEN rce."ID" END) AS successful_finishes
             FROM "REPORT_CARD_EVALUATION" rce, "LABWORK" lab
             WHERE rce."LABWORK" = COALESCE($1, rce."LABWORK") 
               AND rce."LABWORK" = lab."ID"
               AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
+              AND lab."COURSE" = COALESCE($3, lab."COURSE")
+              AND lab."DEGREE" = COALESCE($4, lab."DEGREE")
             `,
-        values: [labworkUUID, semesterUUID]
+        values: [labworkUUID, semesterUUID, courseUUID, degreeUUID]
     };
     const data = await client.query(query);
     if (data) {
@@ -89,20 +97,25 @@ app.get('/api/anmeldungen-vs-bestanden/:labworkUUID', async (req, res) => {
 app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
     const client = clientFactory();
     client.connect();
-    labworkUUID = req.params.labworkUUID;
+
+    labworkUUID = isValidUUID(req.params.labworkUUID) ? req.params.labworkUUID : null;
+
     const query = {
         text: `
             SELECT
-                rce."ASSIGNMENT_INDEX" AS milestone_index,
-                COUNT(rce."ID") AS total_entries
-            FROM
-                "REPORT_CARD_ENTRY" rce, "LABWORK" lab
-            WHERE
-                rce."LABWORK" = COALESCE($1, rce."LABWORK") AND rce."LABWORK" = lab."ID" AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
-            GROUP BY
-                rce."ASSIGNMENT_INDEX";
+                rcen."ASSIGNMENT_INDEX" AS milestone_index,
+                COUNT(DISTINCT CASE WHEN rcet."BOOL" IS NOT FALSE
+                    AND rcet."ENTRY_TYPE" = 'Anwesenheitspflichtig' THEN rcen."ID" END) AS total_entries
+            FROM "REPORT_CARD_ENTRY" rcen, "REPORT_CARD_ENTRY_TYPE" rcet, "LABWORK" lab
+            WHERE rcet."REPORT_CARD_ENTRY" = rcen."ID"
+              AND rcen."LABWORK" = lab."ID"
+              AND rcen."LABWORK" = COALESCE($1, rcen."LABWORK")
+              AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
+              AND lab."COURSE" = COALESCE($3, lab."COURSE")
+              AND lab."DEGREE" = COALESCE($4, lab."DEGREE")
+            GROUP BY rcen."ASSIGNMENT_INDEX";
         `,
-        values: [labworkUUID, semesterUUID]
+        values: [labworkUUID, semesterUUID, courseUUID, degreeUUID]
     };
     const data = await client.query(query);
     if (data) {
@@ -117,7 +130,9 @@ app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
 app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
     const client = clientFactory();
     client.connect();
-    const labworkUUID = req.params.labworkUUID;
+
+    labworkUUID = isValidUUID(req.params.labworkUUID) ? req.params.labworkUUID : null;
+
     const query = {
         text: `
             SELECT
@@ -127,7 +142,9 @@ app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
             FROM
                 "REPORT_CARD_ENTRY" rce, "LABWORK" lab
             WHERE
-                rce."LABWORK" = COALESCE($1, rce."LABWORK") AND rce."LABWORK" = lab."ID" AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
+                rce."LABWORK" = COALESCE($1, rce."LABWORK")
+              AND rce."LABWORK" = lab."ID"
+              AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
             GROUP BY
                 rce."ASSIGNMENT_INDEX";
         `,
