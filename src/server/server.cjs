@@ -225,6 +225,8 @@ app.get('/api/performance-query/:courseUUID', async (req, res) => {
     const client = clientFactory();
     client.connect();
 
+    courseUUID = isValidUUID(req.params.courseUUID) ? req.params.courseUUID : null;
+
     const query = {
         text: `
             WITH DistinctEvaluations AS (
@@ -232,25 +234,28 @@ app.get('/api/performance-query/:courseUUID', async (req, res) => {
                     r."LABWORK",
                     r."STUDENT",
                     l."COURSE",
+                    l."SEMESTER",
                     CASE WHEN r."BOOL" = FALSE OR r."BOOL" IS NULL THEN 1 ELSE 0 END AS is_failed
                 FROM
                     "REPORT_CARD_EVALUATION" r
                         JOIN
                     "LABWORK" l ON r."LABWORK" = l."ID"
                 ORDER BY
-                    r."STUDENT", r."LABWORK", r."ID"  -- Adjust the ORDER BY clause as needed
+                    r."STUDENT", r."LABWORK", r."ID"
             ),
                  PerformanceQuery AS (
                      SELECT
-                         c."SEMESTER" AS semester,
+                         de."SEMESTER" AS semester,
                          COUNT(*) AS total_students,
                          SUM(is_failed) AS failed_students
                      FROM
                          DistinctEvaluations de
                              JOIN
                          "COURSES" c ON de."COURSE" = c."ID"
+                     WHERE
+                         de."COURSE" = $1
                      GROUP BY
-                         c."SEMESTER"
+                         semester
                  )
             SELECT
                 s."LABEL",
@@ -260,11 +265,13 @@ app.get('/api/performance-query/:courseUUID', async (req, res) => {
             FROM
                 PerformanceQuery pq
                     JOIN
-                "SEMESTER" s ON pq.semester = s."ID"
+                "SEMESTERS" s ON pq.semester = s."ID"
             ORDER BY
                 s."START" ASC;
-        `
+        `, values: [courseUUID]
     };
+
+
     const data = await client.query(query);
     if (data) {
         console.log(data.rows);
