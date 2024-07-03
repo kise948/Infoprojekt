@@ -398,6 +398,7 @@
         const marginLeft = 50;
         const width = 1500;
         const height = 600;
+        const labelOffset = 10; // Adjust this value to increase/decrease the distance above the bar
 
         // Parse the data values to ensure they are numbers
         data.forEach(d => {
@@ -443,13 +444,13 @@
             .attr("height", d => y(d.total_students - d.total_students * d.failure_percentage / 100) - y(d.total_students))
             .attr("fill", "red");
 
-        // Add labels
+        // Add labels above the bars
         svg.selectAll(".label")
             .data(data)
             .join("text")
             .attr("class", "label")
             .attr("x", d => x(`${d.FIRSTNAME} ${d.LASTNAME}`) + x.bandwidth() / 2)
-            .attr("y", d => y(d.total_students - d.total_students * d.failure_percentage / 100) - 5)
+            .attr("y", d => y(d.total_students) - labelOffset)
             .attr("dy", "0.35em")
             .attr("fill", "black")
             .attr("text-anchor", "middle")
