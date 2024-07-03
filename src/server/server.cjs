@@ -162,4 +162,57 @@ app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
 });
 
 
+
+// TODO: Performance des Praktikums ueber mehrere Semester
+app.get('/api/anmeldungen-vs-bestanden/:courseUUID', async (req, res) => {
+    const client = clientFactory();
+    client.connect();
+
+    const courseUUID = req.params.courseUUID;
+
+
+    const semesterUUIDs = req.query.semesterUUIDs ? req.query.semesterUUIDs.split(',') : [];
+    const degreeUUID = req.query.degreeUUID || null;
+
+
+    let whereClause = `
+        rce."LABWORK" = lab."ID"
+        AND lab."COURSE" = $1
+    `;
+
+    if (semesterUUIDs.length > 0) {
+        const semesterPlaceholders = semesterUUIDs.map((_, index) => `$${index + 2}`).join(', ');
+        whereClause += ` AND lab."SEMESTER" IN (${semesterPlaceholders})`;
+    }
+    if (degreeUUID) {
+        whereClause += ` AND lab."DEGREE" = $${semesterUUIDs.length + 2}`;
+    }
+
+    const query = {
+        text: `
+            SELECT lab."SEMESTER" as semester_id,
+                   COUNT(DISTINCT rce."ID") as total_applications,
+                   COUNT(DISTINCT CASE WHEN rce."BOOL" IS True THEN rce."ID" END) AS successful_finishes
+            FROM "REPORT_CARD_EVALUATION" rce, "LABWORK" lab
+            WHERE ${whereClause}
+            GROUP BY lab."SEMESTER"
+            ORDER BY lab."SEMESTER"
+        `,
+        values: [courseUUID, ...semesterUUIDs, degreeUUID].filter(Boolean)
+    };
+
+    try {
+        const data = await client.query(query);
+        res.json(data.rows);
+    } catch (err) {
+        console.error('Error executing query', err);
+        res.status(500).send('Error fetching data');
+    }
+        client.end();
+});
+
+
+
+
+
 app.listen(port, () => console.log(`Server listening on port ${port}`));
