@@ -137,7 +137,8 @@
         const urls = [`http://localhost:3000/api/anmeldungen-vs-bestanden/${labworkUUID}`,
                       `http://localhost:3000/api/anmeldungen-und-teilnahmen/${labworkUUID}`,
                       `http://localhost:3000/api/anmeldungen-und-teilnahmen2/${labworkUUID}`,
-                      `http://localhost:3000/api/durchfall-profs`];
+                      `http://localhost:3000/api/durchfall-profs`
+                      `http://localhost:3000/api/performance-query`];
         const url = urls[queryNumber-1];
         const response = await fetch(url);
 
