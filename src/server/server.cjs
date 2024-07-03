@@ -33,7 +33,8 @@ function isValidUUID(str) {
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     return uuidRegex.test(str);
 }
-
+// Reportcardentry erstellt - Entrytypes null
+// Meilenstein Teilgenommen wenn zugehöriges Reportcardentrytype Anwesenheitspflichtig = True ODER Testat != Null
 app.get('/api/Labworks/', async (req, res) => {
     const client = clientFactory()
     client.connect();
@@ -159,6 +160,62 @@ app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
         res.status(500).send('Error fetching data');
     }
         client.end();
+});
+
+app.get('/api/durchfall-profs/', async (req, res) => {
+    const client = clientFactory();
+    client.connect();
+
+    const query = {
+        text: `
+            WITH DistinctEvaluations AS (
+                SELECT DISTINCT ON (r."STUDENT", r."LABWORK")
+                    r."LABWORK",
+                    r."STUDENT",
+                    l."COURSE",
+                    CASE WHEN r."BOOL" = FALSE OR r."BOOL" IS NULL THEN 1 ELSE 0 END AS is_failed
+                FROM
+                    "REPORT_CARD_EVALUATION" r
+                        JOIN
+                    "LABWORK" l ON r."LABWORK" = l."ID"
+                ORDER BY
+                    r."STUDENT", r."LABWORK", r."ID"  -- Adjust the ORDER BY clause as needed
+            ),
+                 FailuresPerProfessor AS (
+                     SELECT
+                         c."LECTURER" AS professor_id,
+                         COUNT(*) AS total_students,
+                         SUM(is_failed) AS failed_students
+                     FROM
+                         DistinctEvaluations de
+                             JOIN
+                         "COURSES" c ON de."COURSE" = c."ID"
+                     GROUP BY
+                         c."LECTURER"
+                 )
+            SELECT
+                u."FIRSTNAME",
+                u."LASTNAME",
+                fpp.total_students,
+                fpp.failed_students,
+                (fpp.failed_students::decimal / fpp.total_students) * 100 AS failure_percentage
+            FROM
+                FailuresPerProfessor fpp
+                    JOIN
+                "USERS" u ON fpp.professor_id = u."ID"
+            ORDER BY
+                failure_percentage DESC;
+        `
+    };
+    const data = await client.query(query);
+    if (data) {
+        console.log(data.rows);
+        res.json(data.rows);
+    }else{
+        console.error('Error fetching data', error);
+        res.status(500).send('Error fetching data');
+    }
+    client.end();
 });
 
 
