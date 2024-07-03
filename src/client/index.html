@@ -391,11 +391,11 @@
             return;
         }
 
-        const barHeight = 100;
-        const marginTop = 0;
+        const barWidth = 40;
+        const marginTop = 20;
         const marginRight = 30;
-        const marginBottom = 55;
-        const marginLeft = 150;
+        const marginBottom = 100;
+        const marginLeft = 50;
         const width = 1500;
         const height = 600;
 
@@ -405,60 +405,65 @@
             d.failure_percentage = parseFloat(d.failure_percentage);
         });
 
-        const x = d3.scaleLinear()
-            .domain([0, d3.max(data, d => d.total_students)])
-            .range([marginLeft, width - marginRight]);
-
-        const y = d3.scaleBand()
+        // Define scales
+        const x = d3.scaleBand()
             .domain(data.map(d => `${d.FIRSTNAME} ${d.LASTNAME}`))
-            .rangeRound([marginTop, height - marginBottom])
+            .range([marginLeft, width - marginRight])
             .padding(0.1);
 
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.total_students)])
+            .nice()
+            .range([height - marginBottom, marginTop]);
+
+        // Create SVG element
         const svg = d3.create("svg")
             .attr("width", width)
             .attr("height", height);
 
+        // Draw total bars (green)
         svg.selectAll(".total-bar")
             .data(data)
             .join("rect")
             .attr("class", "total-bar")
-            .attr("x", x(0))
-            .attr("y", d => y(`${d.FIRSTNAME} ${d.LASTNAME}`))
-            .attr("width", d => {
-                console.log('Total students:', d.total_students); // Debugging line
-                return x(d.total_students) - x(0);
-            })
-            .attr("height", y.bandwidth())
+            .attr("x", d => x(`${d.FIRSTNAME} ${d.LASTNAME}`))
+            .attr("y", d => y(d.total_students))
+            .attr("width", x.bandwidth())
+            .attr("height", d => y(0) - y(d.total_students))
             .attr("fill", "green");
 
+        // Draw failed bars (red) on top of the green bars
         svg.selectAll(".failed-bar")
             .data(data)
             .join("rect")
             .attr("class", "failed-bar")
-            .attr("x", x(0))
-            .attr("y", d => y(`${d.FIRSTNAME} ${d.LASTNAME}`))
-            .attr("width", d => {
-                console.log('Failed students:', d.total_students * d.failure_percentage / 100); // Debugging line
-                return x(d.total_students * d.failure_percentage / 100) - x(0);
-            })
-            .attr("height", y.bandwidth())
+            .attr("x", d => x(`${d.FIRSTNAME} ${d.LASTNAME}`))
+            .attr("y", d => y(d.total_students))
+            .attr("width", x.bandwidth())
+            .attr("height", d => y(d.total_students - d.total_students * d.failure_percentage / 100) - y(d.total_students))
             .attr("fill", "red");
 
+        // Add labels
         svg.selectAll(".label")
             .data(data)
             .join("text")
             .attr("class", "label")
-            .attr("x", d => x(d.total_students) - 15)
-            .attr("y", d => y(`${d.FIRSTNAME} ${d.LASTNAME}`) + y.bandwidth() / 2)
+            .attr("x", d => x(`${d.FIRSTNAME} ${d.LASTNAME}`) + x.bandwidth() / 2)
+            .attr("y", d => y(d.total_students - d.total_students * d.failure_percentage / 100) - 5)
             .attr("dy", "0.35em")
-            .attr("fill", "white")
-            .attr("text-anchor", "end")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
             .text(d => `${d.failure_percentage.toFixed(2)}%`);
 
+        // Draw x-axis
         svg.append("g")
             .attr("transform", `translate(0,${height - marginBottom})`)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .attr("transform", "rotate(-45)")
+            .style("text-anchor", "end");
 
+        // Draw y-axis
         svg.append("g")
             .attr("transform", `translate(${marginLeft},0)`)
             .call(d3.axisLeft(y));
