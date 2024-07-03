@@ -221,51 +221,59 @@ app.get('/api/durchfall-profs/', async (req, res) => {
 
 
 // TODO: Performance des Praktikums ueber mehrere Semester
-app.get('/api/anmeldungen-vs-bestanden/:courseUUID', async (req, res) => {
+app.get('/api/performance-query/:courseUUID', async (req, res) => {
     const client = clientFactory();
     client.connect();
 
-    const courseUUID = req.params.courseUUID;
-
-
-    const semesterUUIDs = req.query.semesterUUIDs ? req.query.semesterUUIDs.split(',') : [];
-    const degreeUUID = req.query.degreeUUID || null;
-
-
-    let whereClause = `
-        rce."LABWORK" = lab."ID"
-        AND lab."COURSE" = $1
-    `;
-
-    if (semesterUUIDs.length > 0) {
-        const semesterPlaceholders = semesterUUIDs.map((_, index) => `$${index + 2}`).join(', ');
-        whereClause += ` AND lab."SEMESTER" IN (${semesterPlaceholders})`;
-    }
-    if (degreeUUID) {
-        whereClause += ` AND lab."DEGREE" = $${semesterUUIDs.length + 2}`;
-    }
-
     const query = {
         text: `
-            SELECT lab."SEMESTER" as semester_id,
-                   COUNT(DISTINCT rce."ID") as total_applications,
-                   COUNT(DISTINCT CASE WHEN rce."BOOL" IS True THEN rce."ID" END) AS successful_finishes
-            FROM "REPORT_CARD_EVALUATION" rce, "LABWORK" lab
-            WHERE ${whereClause}
-            GROUP BY lab."SEMESTER"
-            ORDER BY lab."SEMESTER"
-        `,
-        values: [courseUUID, ...semesterUUIDs, degreeUUID].filter(Boolean)
+            WITH DistinctEvaluations AS (
+                SELECT DISTINCT ON (r."STUDENT", r."LABWORK")
+                    r."LABWORK",
+                    r."STUDENT",
+                    l."COURSE",
+                    CASE WHEN r."BOOL" = FALSE OR r."BOOL" IS NULL THEN 1 ELSE 0 END AS is_failed
+                FROM
+                    "REPORT_CARD_EVALUATION" r
+                        JOIN
+                    "LABWORK" l ON r."LABWORK" = l."ID"
+                ORDER BY
+                    r."STUDENT", r."LABWORK", r."ID"  -- Adjust the ORDER BY clause as needed
+            ),
+                 PerformanceQuery AS (
+                     SELECT
+                         c."SEMESTER" AS semester,
+                         COUNT(*) AS total_students,
+                         SUM(is_failed) AS failed_students
+                     FROM
+                         DistinctEvaluations de
+                             JOIN
+                         "COURSES" c ON de."COURSE" = c."ID"
+                     GROUP BY
+                         c."SEMESTER"
+                 )
+            SELECT
+                s."LABEL",
+                pq.total_students,
+                pq.failed_students,
+                (pq.failed_students::decimal / pq.total_students) * 100 AS failure_percentage
+            FROM
+                PerformanceQuery pq
+                    JOIN
+                "SEMESTER" s ON pq.semester = s."ID"
+            ORDER BY
+                s."START" ASC;
+        `
     };
-
-    try {
-        const data = await client.query(query);
+    const data = await client.query(query);
+    if (data) {
+        console.log(data.rows);
         res.json(data.rows);
-    } catch (err) {
-        console.error('Error executing query', err);
+    }else{
+        console.error('Error fetching data', error);
         res.status(500).send('Error fetching data');
     }
-        client.end();
+    client.end();
 });
 
 
