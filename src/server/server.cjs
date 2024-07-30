@@ -221,11 +221,11 @@ app.get('/api/durchfall-profs/', async (req, res) => {
 
 
 // TODO: Performance des Praktikums ueber mehrere Semester
-app.get('/api/performance-query/:courseUUID', async (req, res) => {
+app.get('/api/performance-query/:courseIndex', async (req, res) => {
     const client = clientFactory();
     client.connect();
-
-    courseUUID = isValidUUID(req.params.courseUUID) ? req.params.courseUUID : null;
+    let index = Number(req.params.courseIndex) ?? 0;
+    courseUUID = courseUUIDs[index];
 
     const query = {
         text: `

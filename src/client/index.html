@@ -140,8 +140,8 @@
         const urls = [`http://localhost:3000/api/anmeldungen-vs-bestanden/${labworkUUID}`,
                       `http://localhost:3000/api/anmeldungen-und-teilnahmen/${labworkUUID}`,
                       `http://localhost:3000/api/anmeldungen-und-teilnahmen2/${labworkUUID}`,
-                      `http://localhost:3000/api/durchfall-profs`
-                      `http://localhost:3000/api/performance-query/${courseUUID}`
+                      `http://localhost:3000/api/durchfall-profs`,
+                      `http://localhost:3000/api/performance-query/${courseIndex}`
         ];
         const url = urls[queryNumber-1];
         const response = await fetch(url);
@@ -170,9 +170,14 @@
             const chart = await createSplitBarChart(res);
             await updateChart(chart);
         } else if (queryNumber === 5) {
-            const chart = await createPerformanceBarChart(res);
-            await updateChart(chart);
-    }
+            if (courseIndex > 0 && courseIndex < 4) {
+                const chart = await createPerformanceBarChart(res);
+                await updateChart(chart);
+            } else {
+                // Show a warning pop-up that the user must select a valid course index
+                alert('Invalid course selection. Please select a course from the available options.');
+            }
+        }
     }
 
     function updateLabworkUUID() {
