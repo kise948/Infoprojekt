@@ -128,40 +128,6 @@ app.get('/api/anmeldungen-und-teilnahmen/:labworkUUID', async (req, res) => {
     client.end();
 });
 
-app.get('/api/anmeldungen-und-teilnahmen2/:labworkUUID', async (req, res) => {
-    const client = clientFactory();
-    client.connect();
-
-    labworkUUID = isValidUUID(req.params.labworkUUID) ? req.params.labworkUUID : null;
-
-    const query = {
-        text: `
-            SELECT
-                rce."ASSIGNMENT_INDEX" AS milestone_index,
-                COUNT(rce."ID") AS total_entries,
-                MAX(rce."DATE") AS max_date  
-            FROM
-                "REPORT_CARD_ENTRY" rce, "LABWORK" lab
-            WHERE
-                rce."LABWORK" = COALESCE($1, rce."LABWORK")
-              AND rce."LABWORK" = lab."ID"
-              AND lab."SEMESTER" = COALESCE($2, lab."SEMESTER")
-            GROUP BY
-                rce."ASSIGNMENT_INDEX";
-        `,
-        values: [labworkUUID, semesterUUID]
-    };
-        const data = await client.query(query);
-        if (data) {
-            console.log(data.rows);
-            res.json(data.rows);
-        }else{
-        console.error('Error fetching data', error);
-        res.status(500).send('Error fetching data');
-    }
-        client.end();
-});
-
 app.get('/api/durchfall-profs/', async (req, res) => {
     const client = clientFactory();
     client.connect();
