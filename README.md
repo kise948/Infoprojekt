@@ -1,4 +1,4 @@
-Das Projekt ist ein Informatikprojekt im Umfang von 10CP und hat das Thema "Praktikumstool". Es beinhaltet eine Präsentation und eine Dokumentation mit 16 Inhaltsseiten, in der das Thema und das Ziel des Projekts erläutert werden.
+Das Projekt ist ein Informatikprojekt im Umfang von 10CP und hat das Thema "Visualisierung von Daten im Praktikumstool". Es beinhaltet eine Präsentation und eine Dokumentation mit 16 Inhaltsseiten, in der das Thema und das Ziel des Projekts erläutert werden.
 
 Das Projekt beinhaltet die Verwendung von D3.js zur Umsetzung eines Konzepts. Die Implementierung sowie auftretende Probleme werden dokumentiert.
 
