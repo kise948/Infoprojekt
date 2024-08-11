@@ -228,8 +228,8 @@
 
         res.rows.forEach(labwork => {
             const labworkElement = document.createElement('option');
-            labworkElement.value = labwork.value; // Update this line
-            labworkElement.text = labwork.label; // Update this line
+            labworkElement.value = labwork.value;
+            labworkElement.text = labwork.label;
             labworkDropdown.add(labworkElement);
         });
     }
